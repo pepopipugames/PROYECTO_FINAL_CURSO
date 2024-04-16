@@ -13,7 +13,7 @@
   <key attr.name="description" attr.type="string" for="edge" id="d9"/>
   <key for="edge" id="d10" yfiles.type="edgegraphics"/>
   <graph edgedefault="directed" id="G">
-    <data key="d0"/>
+    <data key="d0" xml:space="preserve"/>
     <node id="n0">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
@@ -37,25 +37,7 @@ act_ciu_id (FK)<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y:M
     <node id="n1">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
-          <y:Geometry height="145.68000000000006" width="279.84560899031203" x="1838.282191100968" y="642.1388671059472"/>
-          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
-          <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="86.681640625" x="96.58198418265602" xml:space="preserve" y="4.0">CIUDAD VIAJE</y:NodeLabel>
-          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="top" visible="true" width="110.04296875" x="2.0" xml:space="preserve" y="30.701171875">cv_id (PK)
-cv_viaj_id (FK)
-cv_ciu_origen(FK)
-cv_ciu_destino (FK)
-<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y:ModelParameter><y:ErdAttributesNodeLabelModelParameter/></y:ModelParameter></y:NodeLabel>
-          <y:StyleProperties>
-            <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="true"/>
-          </y:StyleProperties>
-        </y:GenericNode>
-      </data>
-    </node>
-    <node id="n2">
-      <data key="d6">
-        <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
-          <y:Geometry height="145.68000000000006" width="132.48000000000002" x="1676.940442440472" y="819.5041994839871"/>
+          <y:Geometry height="145.68000000000006" width="132.48000000000002" x="1676.940442440472" y="756.0857812209097"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="50.001953125" x="41.23902343750001" xml:space="preserve" y="4.0">CIUDAD</y:NodeLabel>
@@ -69,7 +51,7 @@ ciu_pais_id (FK)<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y:
         </y:GenericNode>
       </data>
     </node>
-    <node id="n3">
+    <node id="n2">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
           <y:Geometry height="145.68000000000006" width="132.48000000000002" x="1410.051456868029" y="819.5041994839876"/>
@@ -87,7 +69,7 @@ hot_ciu_id (FK)<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y:M
         </y:GenericNode>
       </data>
     </node>
-    <node id="n4">
+    <node id="n3">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
           <y:Geometry height="145.68000000000006" width="309.845332378041" x="1223.3102769601708" y="464.77353472790674"/>
@@ -108,22 +90,24 @@ res_fch_fin
         </y:GenericNode>
       </data>
     </node>
-    <node id="n5">
+    <node id="n4">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
           <y:Geometry height="145.68000000000006" width="132.48000000000002" x="1676.940442440472" y="464.77353472790674"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="37.345703125" x="47.56714843750001" xml:space="preserve" y="4.0">VIAJE</y:NodeLabel>
-          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="top" visible="true" width="88.041015625" x="2.0" xml:space="preserve" y="30.701171875">viaj_id (PK)
-viaj_mediotrans<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y:ModelParameter><y:ErdAttributesNodeLabelModelParameter/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" configuration="com.yworks.entityRelationship.label.attributes" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="top" visible="true" width="110.04296875" x="2.0" xml:space="preserve" y="30.701171875">viaj_id (PK)
+viaj_mediotrans
+cv_ciu_origen(FK)
+cv_ciu_destino (FK)<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y:ModelParameter><y:ErdAttributesNodeLabelModelParameter/></y:ModelParameter></y:NodeLabel>
           <y:StyleProperties>
             <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="true"/>
           </y:StyleProperties>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n6">
+    <node id="n5">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
           <y:Geometry height="145.68000000000006" width="132.48000000000002" x="1676.940442440472" y="1047.3980277139126"/>
@@ -138,10 +122,10 @@ pais_nombre<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y:Model
         </y:GenericNode>
       </data>
     </node>
-    <node id="n7">
+    <node id="n6">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
-          <y:Geometry height="145.68000000000006" width="309.845332378041" x="956.2484635005358" y="819.5041994839876"/>
+          <y:Geometry height="145.68000000000006" width="309.845332378041" x="943.2484635005358" y="1047.3980277139126"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#B7C9E3" configuration="com.yworks.entityRelationship.label.name" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="144.701171875" x="82.57208025152045" xml:space="preserve" y="4.0">RESERVA ACTIVIDADES</y:NodeLabel>
@@ -155,45 +139,47 @@ react_res_id (FK)<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y
       </data>
     </node>
     <edge id="e0" source="n2" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="1978.204995596124" y="892.3441994839873"/>
-          </y:Path>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e1" source="n1" target="n5">
-      <data key="d9"/>
+    <edge id="e1" source="n5" target="n1">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="1978.204995596124" y="537.6135347279069"/>
-          </y:Path>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e2" source="n2" target="n1">
-      <data key="d9"/>
+    <edge id="e2" source="n4" target="n3">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="1743.1804424404722" y="714.9788671059473"/>
-          </y:Path>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e3" source="n3" target="n2">
+    <edge id="e3" source="n0" target="n1">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="299.376953125" x="286.8220214843752" xml:space="preserve" y="-101.36791992187477">METER TABLA N:N ENTRE CIUDAD Y ACTIVIDADES<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="143.0090052818333" distanceToCenter="false" position="right" ratio="162.48656411771012" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e4" source="n4" target="n1">
       <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -204,7 +190,7 @@ react_res_id (FK)<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e4" source="n6" target="n2">
+    <edge id="e5" source="n6" target="n0">
       <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -215,7 +201,7 @@ react_res_id (FK)<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e5" source="n5" target="n4">
+    <edge id="e6" source="n1" target="n4">
       <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -226,49 +212,14 @@ react_res_id (FK)<y:LabelModel><y:ErdAttributesNodeLabelModel/></y:LabelModel><y
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e6" source="n3" target="n4">
+    <edge id="e7" source="n1" target="n4">
       <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="1378.2329431491912" y="892.3441994839877"/>
-          </y:Path>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="none"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e7" source="n0" target="n2">
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="none"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e8" source="n0" target="n7">
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="1111.1711296895562" y="1120.2380277139127"/>
-          </y:Path>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="none"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e9" source="n7" target="n4">
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="1111.1711296895562" y="537.6135347279069"/>
+            <y:Point x="1947.5" y="828.9257812209097"/>
+            <y:Point x="1947.5" y="698.5"/>
+            <y:Point x="1947.5" y="537.6135347279068"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="none"/>
