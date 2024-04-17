@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-04-2024 a las 09:46:13
+-- Tiempo de generación: 17-04-2024 a las 12:36:45
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `bd_p`
+-- Base de datos: `bd_viajes`
 --
 
 -- --------------------------------------------------------
@@ -35,19 +35,7 @@ CREATE TABLE `actividades` (
   `act_inicio` datetime NOT NULL,
   `act_duracion` int(11) NOT NULL,
   `act_precio` decimal(10,2) NOT NULL,
-  `act_ciu_id` int(11) NOT NULL,
-  `act_usu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `actividades_usuarios`
---
-
-CREATE TABLE `actividades_usuarios` (
-  `au_usu_id` int(11) NOT NULL,
-  `au_act_id` int(11) NOT NULL
+  `act_ciu_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -67,13 +55,35 @@ CREATE TABLE `ciudades` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ciudades_actividades`
+-- Estructura de tabla para la tabla `historial_user`
 --
 
-CREATE TABLE `ciudades_actividades` (
-  `ca_ciu_id` int(11) NOT NULL,
-  `ca_act_id` int(11) NOT NULL
+CREATE TABLE `historial_user` (
+  `hu_id` int(11) NOT NULL,
+  `hu_usu_id` int(11) NOT NULL,
+  `hu_nombre_anterior` varchar(50) DEFAULT NULL,
+  `hu_nombre_nuevo` varchar(50) NOT NULL,
+  `hu_apellido_antiguo` varchar(50) DEFAULT NULL,
+  `hu_apellido_nuevo` varchar(50) NOT NULL,
+  `hu_alias_antiguo` varchar(50) DEFAULT NULL,
+  `hu_alias_nuevo` varchar(50) NOT NULL,
+  `hu_pass_antiguo` varchar(50) DEFAULT NULL,
+  `hu_pass_nuevo` varchar(50) NOT NULL,
+  `hu_doc_antiguo` varchar(50) DEFAULT NULL,
+  `hu_doc_nuevo` varchar(50) NOT NULL,
+  `hu_telefono_antiguo` varchar(50) DEFAULT NULL,
+  `hu_telefono_nuevo` varchar(50) NOT NULL,
+  `hu_fnac_antiguo` date DEFAULT NULL,
+  `hu_fnac_nuevo` date NOT NULL,
+  `hu_accion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `historial_user`
+--
+
+INSERT INTO `historial_user` (`hu_id`, `hu_usu_id`, `hu_nombre_anterior`, `hu_nombre_nuevo`, `hu_apellido_antiguo`, `hu_apellido_nuevo`, `hu_alias_antiguo`, `hu_alias_nuevo`, `hu_pass_antiguo`, `hu_pass_nuevo`, `hu_doc_antiguo`, `hu_doc_nuevo`, `hu_telefono_antiguo`, `hu_telefono_nuevo`, `hu_fnac_antiguo`, `hu_fnac_nuevo`, `hu_accion`) VALUES
+(1, 3, NULL, 'David', NULL, 'Pires', NULL, 'batistaker47', NULL, '48ea1c9f6c3ca4c632919eeb228e55cc', NULL, '05555', NULL, '6666', NULL, '2024-04-02', 'REGISTRO NUEVO USUARIO');
 
 -- --------------------------------------------------------
 
@@ -86,19 +96,7 @@ CREATE TABLE `hoteles` (
   `hot_nombre` varchar(50) NOT NULL,
   `hot_logo` varchar(50) NOT NULL,
   `hot_precio_noche` decimal(10,2) NOT NULL,
-  `hot_ciu_id` int(11) NOT NULL,
-  `hot_usu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `hoteles_usuarios`
---
-
-CREATE TABLE `hoteles_usuarios` (
-  `hu_usu_id` int(11) NOT NULL,
-  `hu_hot_id` int(11) NOT NULL
+  `hot_ciu_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -115,14 +113,27 @@ CREATE TABLE `paises` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `registro_reservas`
+-- Estructura de tabla para la tabla `reservas_hotel_viajes`
 --
 
-CREATE TABLE `registro_reservas` (
-  `rr_id` int(11) NOT NULL,
-  `rr_nombre_cliente` varchar(50) NOT NULL,
-  `rr_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `rr_accion` varchar(50) NOT NULL
+CREATE TABLE `reservas_hotel_viajes` (
+  `rhv_id` int(11) NOT NULL,
+  `rhv_hot_id` int(11) NOT NULL,
+  `rhv_viaje_id` int(11) NOT NULL,
+  `rhv_usu_id` int(11) NOT NULL,
+  `rhv_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reserva_act`
+--
+
+CREATE TABLE `reserva_act` (
+  `ra_act_id` int(11) NOT NULL,
+  `ra_usu_id` int(11) NOT NULL,
+  `ra_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -136,11 +147,44 @@ CREATE TABLE `usuarios` (
   `usu_nombre` varchar(50) NOT NULL,
   `usu_apellido` varchar(50) NOT NULL,
   `usu_alias` varchar(50) NOT NULL,
-  `usu_pass` varchar(250) NOT NULL,
+  `usu_pass` varchar(50) NOT NULL,
   `usu_documento_identificacion` varchar(50) NOT NULL,
   `usu_telefono` varchar(50) NOT NULL,
   `usu_fnac` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`usu_id`, `usu_nombre`, `usu_apellido`, `usu_alias`, `usu_pass`, `usu_documento_identificacion`, `usu_telefono`, `usu_fnac`) VALUES
+(3, 'David', 'Pires', 'batistaker47', '78012e3c75570aa4c07b5f7410e86bb3', '05555', '6666', '2024-04-02');
+
+--
+-- Disparadores `usuarios`
+--
+DELIMITER $$
+CREATE TRIGGER `AfterInsert` AFTER INSERT ON `usuarios` FOR EACH ROW INSERT INTO historial_user VALUES
+(null,
+ NEW.usu_id,
+ null,
+ NEW.usu_nombre,
+ null,
+ NEW.usu_apellido,
+ null,
+ NEW.usu_alias,
+ null,
+ md5(NEW.usu_pass),
+ null,
+ NEW.usu_documento_identificacion,
+ null,
+ NEW.usu_telefono,
+ null,
+ NEW.usu_fnac,
+ "REGISTRO NUEVO USUARIO"
+)
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -155,19 +199,7 @@ CREATE TABLE `viajes` (
   `viaje_ciu_destino` int(11) NOT NULL,
   `viaje_precio` decimal(10,2) NOT NULL,
   `viaje_ida` datetime NOT NULL,
-  `viaje_vuelta` datetime NOT NULL,
-  `viaje_usu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `viajes_usuarios`
---
-
-CREATE TABLE `viajes_usuarios` (
-  `vu_usu_id` int(11) NOT NULL,
-  `vu_viaje_id` int(11) NOT NULL
+  `viaje_vuelta` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -179,14 +211,7 @@ CREATE TABLE `viajes_usuarios` (
 --
 ALTER TABLE `actividades`
   ADD PRIMARY KEY (`act_id`),
-  ADD KEY `r-actividades-usuarios` (`act_usu_id`);
-
---
--- Indices de la tabla `actividades_usuarios`
---
-ALTER TABLE `actividades_usuarios`
-  ADD PRIMARY KEY (`au_usu_id`,`au_act_id`),
-  ADD KEY `r-au-actividades` (`au_act_id`);
+  ADD KEY `r-actividades-ciudad` (`act_ciu_id`);
 
 --
 -- Indices de la tabla `ciudades`
@@ -197,26 +222,18 @@ ALTER TABLE `ciudades`
   ADD KEY `r-ciudad-pais` (`ciu_pais_id`);
 
 --
--- Indices de la tabla `ciudades_actividades`
+-- Indices de la tabla `historial_user`
 --
-ALTER TABLE `ciudades_actividades`
-  ADD PRIMARY KEY (`ca_ciu_id`,`ca_act_id`),
-  ADD KEY `r-ca-actividades` (`ca_act_id`);
+ALTER TABLE `historial_user`
+  ADD PRIMARY KEY (`hu_id`),
+  ADD KEY `r-hu-users` (`hu_usu_id`);
 
 --
 -- Indices de la tabla `hoteles`
 --
 ALTER TABLE `hoteles`
   ADD PRIMARY KEY (`hot_id`),
-  ADD KEY `r-hoteles-ciudades` (`hot_ciu_id`),
-  ADD KEY `r-hoteles-usuarios` (`hot_usu_id`);
-
---
--- Indices de la tabla `hoteles_usuarios`
---
-ALTER TABLE `hoteles_usuarios`
-  ADD PRIMARY KEY (`hu_usu_id`,`hu_hot_id`),
-  ADD KEY `r-hu-hoteles` (`hu_hot_id`);
+  ADD KEY `r-hoteles-ciudades` (`hot_ciu_id`);
 
 --
 -- Indices de la tabla `paises`
@@ -225,10 +242,20 @@ ALTER TABLE `paises`
   ADD PRIMARY KEY (`pais_id`);
 
 --
--- Indices de la tabla `registro_reservas`
+-- Indices de la tabla `reservas_hotel_viajes`
 --
-ALTER TABLE `registro_reservas`
-  ADD PRIMARY KEY (`rr_id`);
+ALTER TABLE `reservas_hotel_viajes`
+  ADD PRIMARY KEY (`rhv_id`),
+  ADD KEY `r-rhv-usuarios` (`rhv_usu_id`),
+  ADD KEY `r-rhv-hoteles` (`rhv_hot_id`),
+  ADD KEY `r-rhv-viajes` (`rhv_viaje_id`);
+
+--
+-- Indices de la tabla `reserva_act`
+--
+ALTER TABLE `reserva_act`
+  ADD PRIMARY KEY (`ra_act_id`,`ra_usu_id`),
+  ADD KEY `r-ra-usuarios` (`ra_usu_id`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -242,15 +269,7 @@ ALTER TABLE `usuarios`
 ALTER TABLE `viajes`
   ADD PRIMARY KEY (`viaje_id`),
   ADD KEY `r-ciudad-viaje-origen` (`viaje_ciu_origen`),
-  ADD KEY `r-ciudad-viaje-destino` (`viaje_ciu_destino`),
-  ADD KEY `r-viaje-clientes` (`viaje_usu_id`);
-
---
--- Indices de la tabla `viajes_usuarios`
---
-ALTER TABLE `viajes_usuarios`
-  ADD PRIMARY KEY (`vu_usu_id`,`vu_viaje_id`),
-  ADD KEY `r-vu-viajes` (`vu_viaje_id`);
+  ADD KEY `r-ciudad-viaje-destino` (`viaje_ciu_destino`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -269,6 +288,12 @@ ALTER TABLE `ciudades`
   MODIFY `ciu_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `historial_user`
+--
+ALTER TABLE `historial_user`
+  MODIFY `hu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `hoteles`
 --
 ALTER TABLE `hoteles`
@@ -281,16 +306,16 @@ ALTER TABLE `paises`
   MODIFY `pais_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `registro_reservas`
+-- AUTO_INCREMENT de la tabla `reservas_hotel_viajes`
 --
-ALTER TABLE `registro_reservas`
-  MODIFY `rr_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `reservas_hotel_viajes`
+  MODIFY `rhv_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `viajes`
@@ -303,11 +328,10 @@ ALTER TABLE `viajes`
 --
 
 --
--- Filtros para la tabla `actividades_usuarios`
+-- Filtros para la tabla `actividades`
 --
-ALTER TABLE `actividades_usuarios`
-  ADD CONSTRAINT `r-au-actividades` FOREIGN KEY (`au_act_id`) REFERENCES `actividades` (`act_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `r-au-usuarios` FOREIGN KEY (`au_usu_id`) REFERENCES `usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE `actividades`
+  ADD CONSTRAINT `r-actividades-ciudad` FOREIGN KEY (`act_ciu_id`) REFERENCES `ciudades` (`ciu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ciudades`
@@ -316,11 +340,10 @@ ALTER TABLE `ciudades`
   ADD CONSTRAINT `r-pais-ciudad` FOREIGN KEY (`ciu_pais_id`) REFERENCES `paises` (`pais_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `ciudades_actividades`
+-- Filtros para la tabla `historial_user`
 --
-ALTER TABLE `ciudades_actividades`
-  ADD CONSTRAINT `r-ca-actividades` FOREIGN KEY (`ca_act_id`) REFERENCES `actividades` (`act_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `r-ca-ciudades` FOREIGN KEY (`ca_ciu_id`) REFERENCES `ciudades` (`ciu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE `historial_user`
+  ADD CONSTRAINT `r-hu-users` FOREIGN KEY (`hu_usu_id`) REFERENCES `usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `hoteles`
@@ -329,24 +352,25 @@ ALTER TABLE `hoteles`
   ADD CONSTRAINT `r-ciudades-hoteles` FOREIGN KEY (`hot_ciu_id`) REFERENCES `ciudades` (`ciu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `hoteles_usuarios`
+-- Filtros para la tabla `reservas_hotel_viajes`
 --
-ALTER TABLE `hoteles_usuarios`
-  ADD CONSTRAINT `r-hu-hoteles` FOREIGN KEY (`hu_hot_id`) REFERENCES `hoteles` (`hot_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `r-hu-usuarios` FOREIGN KEY (`hu_usu_id`) REFERENCES `usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE `reservas_hotel_viajes`
+  ADD CONSTRAINT `r-rhv-hoteles` FOREIGN KEY (`rhv_hot_id`) REFERENCES `hoteles` (`hot_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `r-rhv-usuarios` FOREIGN KEY (`rhv_usu_id`) REFERENCES `usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `r-rhv-viajes` FOREIGN KEY (`rhv_viaje_id`) REFERENCES `viajes` (`viaje_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `reserva_act`
+--
+ALTER TABLE `reserva_act`
+  ADD CONSTRAINT `r-ra-actividades` FOREIGN KEY (`ra_act_id`) REFERENCES `actividades` (`act_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `r-ra-usuarios` FOREIGN KEY (`ra_usu_id`) REFERENCES `usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `viajes`
 --
 ALTER TABLE `viajes`
   ADD CONSTRAINT `r-ciudad-viaje-destino` FOREIGN KEY (`viaje_ciu_destino`) REFERENCES `ciudades` (`ciu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `viajes_usuarios`
---
-ALTER TABLE `viajes_usuarios`
-  ADD CONSTRAINT `r-vu-usuarios` FOREIGN KEY (`vu_usu_id`) REFERENCES `usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `r-vu-viajes` FOREIGN KEY (`vu_viaje_id`) REFERENCES `viajes` (`viaje_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
