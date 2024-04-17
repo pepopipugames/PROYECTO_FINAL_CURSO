@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-04-2024 a las 12:36:45
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.2
+-- Tiempo de generación: 17-04-2024 a las 16:27:17
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -34,16 +33,10 @@ CREATE TABLE `actividades` (
   `act_descripcion` text NOT NULL,
   `act_inicio` datetime NOT NULL,
   `act_duracion` int(11) NOT NULL,
-  `act_precio` decimal(10,2) NOT NULL,
-  `act_ciu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `act_precio` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
-
-CREATE TABLE `ciudades_actividades` (
-	`act_id` INT(11) NOT NULL,
-    `ciu_id` INT(11) NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Estructura de tabla para la tabla `ciudades`
@@ -55,7 +48,18 @@ CREATE TABLE `ciudades` (
   `ciu_codigo` varchar(3) NOT NULL,
   `ciu_foto` varchar(50) NOT NULL,
   `ciu_pais_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ciudades_actividades`
+--
+
+CREATE TABLE `ciudades_actividades` (
+  `ca_act_id` int(11) NOT NULL,
+  `ca_ciu_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -81,7 +85,7 @@ CREATE TABLE `historial_user` (
   `hu_fnac_antiguo` date DEFAULT NULL,
   `hu_fnac_nuevo` date NOT NULL,
   `hu_accion` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `historial_user`
@@ -102,7 +106,7 @@ CREATE TABLE `hoteles` (
   `hot_logo` varchar(50) NOT NULL,
   `hot_precio_noche` decimal(10,2) NOT NULL,
   `hot_ciu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -113,7 +117,7 @@ CREATE TABLE `hoteles` (
 CREATE TABLE `paises` (
   `pais_id` int(11) NOT NULL,
   `pais_nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -127,9 +131,9 @@ CREATE TABLE `reservas_hotel_viajes` (
   `rhv_viaje_id` int(11) NOT NULL,
   `rhv_usu_id` int(11) NOT NULL,
   `rhv_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `rhv_fecha_inicio` DATE NOT NULL,
-  `rhv_fecha_fin` DATE NOT NULL 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `rhv_fecha_inicio` date NOT NULL,
+  `rhv_fecha_fin` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -141,7 +145,7 @@ CREATE TABLE `reserva_act` (
   `ra_act_id` int(11) NOT NULL,
   `ra_usu_id` int(11) NOT NULL,
   `ra_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -158,7 +162,7 @@ CREATE TABLE `usuarios` (
   `usu_documento_identificacion` varchar(50) NOT NULL,
   `usu_telefono` varchar(50) NOT NULL,
   `usu_fnac` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -207,7 +211,7 @@ CREATE TABLE `viajes` (
   `viaje_precio` decimal(10,2) NOT NULL,
   `viaje_ida` datetime NOT NULL,
   `viaje_vuelta` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas
@@ -217,14 +221,8 @@ CREATE TABLE `viajes` (
 -- Indices de la tabla `actividades`
 --
 ALTER TABLE `actividades`
-  ADD PRIMARY KEY (`act_id`),
-  ADD KEY `r-actividades-ciudad` (`act_ciu_id`);
---
--- Indices de la tabla `ciudades_actividades`
---
-ALTER TABLE `ciudades_actividades`
-  ADD PRIMARY KEY (`ca_act_id`),
-  ADD PRIMARY KEY (`ca_ciu_id`);
+  ADD PRIMARY KEY (`act_id`);
+
 --
 -- Indices de la tabla `ciudades`
 --
@@ -232,6 +230,13 @@ ALTER TABLE `ciudades`
   ADD PRIMARY KEY (`ciu_id`),
   ADD UNIQUE KEY `ciu_codigo` (`ciu_codigo`),
   ADD KEY `r-ciudad-pais` (`ciu_pais_id`);
+
+--
+-- Indices de la tabla `ciudades_actividades`
+--
+ALTER TABLE `ciudades_actividades`
+  ADD PRIMARY KEY (`ca_act_id`,`ca_ciu_id`),
+  ADD KEY `r-ca-ciudades` (`ca_ciu_id`);
 
 --
 -- Indices de la tabla `historial_user`
@@ -340,16 +345,17 @@ ALTER TABLE `viajes`
 --
 
 --
--- Filtros para la tabla `ciudades_actividades`
---
-ALTER TABLE `ciudades_actividades`
-  ADD CONSTRAINT `r-ciudades_actividades-actividades` FOREIGN KEY (`ca_act_id`) REFERENCES `actividades` (`act_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `r-ciudades_actividades-ciudad` FOREIGN KEY (`ca_ciu_id`) REFERENCES `ciudades` (`ciu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
---
 -- Filtros para la tabla `ciudades`
 --
 ALTER TABLE `ciudades`
   ADD CONSTRAINT `r-pais-ciudad` FOREIGN KEY (`ciu_pais_id`) REFERENCES `paises` (`pais_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `ciudades_actividades`
+--
+ALTER TABLE `ciudades_actividades`
+  ADD CONSTRAINT `r-ca-actividades` FOREIGN KEY (`ca_act_id`) REFERENCES `actividades` (`act_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `r-ca-ciudades` FOREIGN KEY (`ca_ciu_id`) REFERENCES `ciudades` (`ciu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `historial_user`
