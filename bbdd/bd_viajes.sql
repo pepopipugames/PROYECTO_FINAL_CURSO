@@ -40,6 +40,11 @@ CREATE TABLE `actividades` (
 
 -- --------------------------------------------------------
 
+CREATE TABLE `ciudades_actividades` (
+	`act_id` INT(11) NOT NULL,
+    `ciu_id` INT(11) NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Estructura de tabla para la tabla `ciudades`
 --
@@ -121,7 +126,9 @@ CREATE TABLE `reservas_hotel_viajes` (
   `rhv_hot_id` int(11) NOT NULL,
   `rhv_viaje_id` int(11) NOT NULL,
   `rhv_usu_id` int(11) NOT NULL,
-  `rhv_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `rhv_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `rhv_fecha_inicio` DATE NOT NULL,
+  `rhv_fecha_fin` DATE NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -212,7 +219,12 @@ CREATE TABLE `viajes` (
 ALTER TABLE `actividades`
   ADD PRIMARY KEY (`act_id`),
   ADD KEY `r-actividades-ciudad` (`act_ciu_id`);
-
+--
+-- Indices de la tabla `ciudades_actividades`
+--
+ALTER TABLE `ciudades_actividades`
+  ADD PRIMARY KEY (`ca_act_id`),
+  ADD PRIMARY KEY (`ca_ciu_id`);
 --
 -- Indices de la tabla `ciudades`
 --
@@ -328,11 +340,11 @@ ALTER TABLE `viajes`
 --
 
 --
--- Filtros para la tabla `actividades`
+-- Filtros para la tabla `ciudades_actividades`
 --
-ALTER TABLE `actividades`
-  ADD CONSTRAINT `r-actividades-ciudad` FOREIGN KEY (`act_ciu_id`) REFERENCES `ciudades` (`ciu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
+ALTER TABLE `ciudades_actividades`
+  ADD CONSTRAINT `r-ciudades_actividades-actividades` FOREIGN KEY (`ca_act_id`) REFERENCES `actividades` (`act_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `r-ciudades_actividades-ciudad` FOREIGN KEY (`ca_ciu_id`) REFERENCES `ciudades` (`ciu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 --
 -- Filtros para la tabla `ciudades`
 --
