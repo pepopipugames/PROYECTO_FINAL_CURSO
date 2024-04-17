@@ -18,5 +18,46 @@ if (isset($_REQUEST['peticion'])) {
             $datos['datos'] = BBDD_CTRLR::CRUD($sql, '');
             echo json_encode($datos);
             break;
+        case "Login":
+            $alias = $_REQUEST['alias'];
+            $password = $_REQUEST['password'];
+            $sql = 
+                "SELECT * 
+                FROM usuarios 
+                WHERE usu_alias = '$alias' 
+                AND usu_pass = md5('$password')";
+                $datos['sql'] = $sql;
+                $datos['datos'] = BBDD_CTRLR::Consultas($sql);
+                echo json_encode($datos);      
+                break;
+        case "Cargar_Ciudades":
+             $sql = "SELECT * FROM ciudades ORDER BY ciu_nombre ASC";
+             $datos = BBDD_CTRLR::Consultas($sql);
+             echo json_encode($datos);      
+             break;
+        case "Cargar_Hoteles":
+            $sql = "SELECT * FROM hoteles ORDER BY hot_nombre ASC";
+            $datos = BBDD_CTRLR::Consultas($sql);
+            echo json_encode($datos);      
+            break;
+        case "Cargar_Hoteles_ID":
+            $ciu_id=$_REQUEST['ciu_id'];
+            $sql = 
+            "SELECT *
+             FROM  hoteles
+             WHERE hot_ciu_id = '$ciu_id'
+             ORDER BY hot_nombre ASC";
+             $datos['sql'] = $sql;
+             $datos['datos'] = BBDD_CTRLR::Consultas($sql);
+             echo json_encode($datos);      
+            break; 
+        case "Cargar_Actividades":
+            $sql = 
+            "SELECT * 
+            FROM actividades 
+            ORDER BY act_nombre ASC";
+            $datos = BBDD_CTRLR::Consultas($sql);
+            echo json_encode($datos);      
+            break;               
     }
 }
