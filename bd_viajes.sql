@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-04-2024 a las 18:17:18
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Tiempo de generación: 17-04-2024 a las 09:46:13
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `bd_viajes`
+-- Base de datos: `bd_p`
 --
 
 -- --------------------------------------------------------
@@ -36,7 +37,7 @@ CREATE TABLE `actividades` (
   `act_precio` decimal(10,2) NOT NULL,
   `act_ciu_id` int(11) NOT NULL,
   `act_usu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -47,7 +48,7 @@ CREATE TABLE `actividades` (
 CREATE TABLE `actividades_usuarios` (
   `au_usu_id` int(11) NOT NULL,
   `au_act_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,7 @@ CREATE TABLE `ciudades` (
   `ciu_codigo` varchar(3) NOT NULL,
   `ciu_foto` varchar(50) NOT NULL,
   `ciu_pais_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -72,7 +73,7 @@ CREATE TABLE `ciudades` (
 CREATE TABLE `ciudades_actividades` (
   `ca_ciu_id` int(11) NOT NULL,
   `ca_act_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,7 @@ CREATE TABLE `hoteles` (
   `hot_precio_noche` decimal(10,2) NOT NULL,
   `hot_ciu_id` int(11) NOT NULL,
   `hot_usu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -98,7 +99,7 @@ CREATE TABLE `hoteles` (
 CREATE TABLE `hoteles_usuarios` (
   `hu_usu_id` int(11) NOT NULL,
   `hu_hot_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -109,7 +110,7 @@ CREATE TABLE `hoteles_usuarios` (
 CREATE TABLE `paises` (
   `pais_id` int(11) NOT NULL,
   `pais_nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -122,7 +123,7 @@ CREATE TABLE `registro_reservas` (
   `rr_nombre_cliente` varchar(50) NOT NULL,
   `rr_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `rr_accion` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -134,10 +135,12 @@ CREATE TABLE `usuarios` (
   `usu_id` int(11) NOT NULL,
   `usu_nombre` varchar(50) NOT NULL,
   `usu_apellido` varchar(50) NOT NULL,
+  `usu_alias` varchar(50) NOT NULL,
+  `usu_pass` varchar(250) NOT NULL,
   `usu_documento_identificacion` varchar(50) NOT NULL,
   `usu_telefono` varchar(50) NOT NULL,
   `usu_fnac` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -154,7 +157,7 @@ CREATE TABLE `viajes` (
   `viaje_ida` datetime NOT NULL,
   `viaje_vuelta` datetime NOT NULL,
   `viaje_usu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -165,7 +168,7 @@ CREATE TABLE `viajes` (
 CREATE TABLE `viajes_usuarios` (
   `vu_usu_id` int(11) NOT NULL,
   `vu_viaje_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
