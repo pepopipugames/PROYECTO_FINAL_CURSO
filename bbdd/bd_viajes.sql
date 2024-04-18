@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-04-2024 a las 16:27:17
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Tiempo de generación: 18-04-2024 a las 10:39:35
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,10 +32,10 @@ CREATE TABLE `actividades` (
   `act_id` int(11) NOT NULL,
   `act_nombre` varchar(50) NOT NULL,
   `act_descripcion` text NOT NULL,
-  `act_inicio` datetime NOT NULL,
+  `act_inicio` time NOT NULL,
   `act_duracion` int(11) NOT NULL,
   `act_precio` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -48,7 +49,7 @@ CREATE TABLE `ciudades` (
   `ciu_codigo` varchar(3) NOT NULL,
   `ciu_foto` varchar(50) NOT NULL,
   `ciu_pais_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -59,7 +60,7 @@ CREATE TABLE `ciudades` (
 CREATE TABLE `ciudades_actividades` (
   `ca_act_id` int(11) NOT NULL,
   `ca_ciu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,7 @@ CREATE TABLE `historial_user` (
   `hu_fnac_antiguo` date DEFAULT NULL,
   `hu_fnac_nuevo` date NOT NULL,
   `hu_accion` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `historial_user`
@@ -106,7 +107,7 @@ CREATE TABLE `hoteles` (
   `hot_logo` varchar(50) NOT NULL,
   `hot_precio_noche` decimal(10,2) NOT NULL,
   `hot_ciu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -117,7 +118,7 @@ CREATE TABLE `hoteles` (
 CREATE TABLE `paises` (
   `pais_id` int(11) NOT NULL,
   `pais_nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -133,7 +134,7 @@ CREATE TABLE `reservas_hotel_viajes` (
   `rhv_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `rhv_fecha_inicio` date NOT NULL,
   `rhv_fecha_fin` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -145,7 +146,7 @@ CREATE TABLE `reserva_act` (
   `ra_act_id` int(11) NOT NULL,
   `ra_usu_id` int(11) NOT NULL,
   `ra_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -162,7 +163,7 @@ CREATE TABLE `usuarios` (
   `usu_documento_identificacion` varchar(50) NOT NULL,
   `usu_telefono` varchar(50) NOT NULL,
   `usu_fnac` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -211,7 +212,7 @@ CREATE TABLE `viajes` (
   `viaje_precio` decimal(10,2) NOT NULL,
   `viaje_ida` datetime NOT NULL,
   `viaje_vuelta` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
