@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-04-2024 a las 08:57:45
+-- Tiempo de generación: 19-04-2024 a las 09:39:17
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -43,6 +43,26 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `paises_update` (IN `_id` INT, IN `_
 	pais_nombre = _nombre
 WHERE
 	pais_id = _id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuarios_insert` (IN `_nombre` VARCHAR(50), IN `_apellido` VARCHAR(50), IN `_alias` VARCHAR(50), IN `_password` VARCHAR(50), IN `_documento` VARCHAR(50), IN `_telefono` VARCHAR(50), IN `_fecha` DATE)  INSERT INTO usuarios VALUES
+(null, _nombre, _apellido, _alias, md5(_password), _documento, _telefono, _fecha )$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuarios_select_all` ()  SELECT * FROM usuarios ORDER BY usu_nombre$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuarios_select_by_id` (IN `_id` INT)  NO SQL
+    COMMENT 'We can use this function to select a user by his/her id '
+SELECT * FROM usuarios WHERE usu_id = _id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usuarios_update` (IN `_nombre` VARCHAR(50), IN `_apellido` VARCHAR(50), IN `_alias` VARCHAR(50), IN `_password` VARCHAR(50), IN `_documento` VARCHAR(50), IN `_telefono` VARCHAR(50), IN `_fecha` DATE, IN `_id` INT)  UPDATE usuarios SET 
+	usu_nombre = _nombre,
+    usu_apellido = _apellido,
+    usu_alias = _alias,
+    usu_pass = _password,
+    usu_documento_identificacion = _documento,
+    usu_telefono = _telefono,
+    usu_fnac = _fecha
+WHERE
+	usu_id = _id$$
 
 DELIMITER ;
 
@@ -111,13 +131,6 @@ CREATE TABLE `historial_user` (
   `hu_fnac_nuevo` date NOT NULL,
   `hu_accion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `historial_user`
---
-
-INSERT INTO `historial_user` (`hu_id`, `hu_usu_id`, `hu_nombre_anterior`, `hu_nombre_nuevo`, `hu_apellido_antiguo`, `hu_apellido_nuevo`, `hu_alias_antiguo`, `hu_alias_nuevo`, `hu_pass_antiguo`, `hu_pass_nuevo`, `hu_doc_antiguo`, `hu_doc_nuevo`, `hu_telefono_antiguo`, `hu_telefono_nuevo`, `hu_fnac_antiguo`, `hu_fnac_nuevo`, `hu_accion`) VALUES
-(1, 3, NULL, 'David', NULL, 'Pires', NULL, 'batistaker47', NULL, '48ea1c9f6c3ca4c632919eeb228e55cc', NULL, '05555', NULL, '6666', NULL, '2024-04-02', 'REGISTRO NUEVO USUARIO');
 
 -- --------------------------------------------------------
 
@@ -188,13 +201,6 @@ CREATE TABLE `usuarios` (
   `usu_telefono` varchar(50) NOT NULL,
   `usu_fnac` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`usu_id`, `usu_nombre`, `usu_apellido`, `usu_alias`, `usu_pass`, `usu_documento_identificacion`, `usu_telefono`, `usu_fnac`) VALUES
-(3, 'David', 'Pires', 'batistaker47', '78012e3c75570aa4c07b5f7410e86bb3', '05555', '6666', '2024-04-02');
 
 --
 -- Disparadores `usuarios`
@@ -333,7 +339,7 @@ ALTER TABLE `ciudades`
 -- AUTO_INCREMENT de la tabla `historial_user`
 --
 ALTER TABLE `historial_user`
-  MODIFY `hu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `hu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `hoteles`
@@ -357,7 +363,7 @@ ALTER TABLE `reservas_hotel_viajes`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `viajes`
