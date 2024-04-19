@@ -26,6 +26,10 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ciudades_select_all` ()  SELECT * FROM ciudades$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ciudades_select_by_id` (IN `_id` INT)  SELECT * FROM ciudades WHERE ciu_id = _id$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `paises_delete` (IN `_id` INT)  DELETE FROM paises WHERE pais_id = _id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `paises_insert` (IN `_nombre` VARCHAR(50))  INSERT INTO paises VALUES
@@ -95,6 +99,14 @@ CREATE TABLE `ciudades` (
   `ciu_pais_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `ciudades`
+--
+
+INSERT INTO `ciudades` (`ciu_id`, `ciu_nombre`, `ciu_codigo`, `ciu_foto`, `ciu_pais_id`) VALUES
+(1, 'madrid', 'MAD', 'madrid.jpg', 1),
+(2, 'paris', 'PAR', 'paris.jpg', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -156,6 +168,14 @@ CREATE TABLE `paises` (
   `pais_id` int(11) NOT NULL,
   `pais_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `paises`
+--
+
+INSERT INTO `paises` (`pais_id`, `pais_nombre`) VALUES
+(1, 'españa'),
+(2, 'francia');
 
 -- --------------------------------------------------------
 
@@ -333,7 +353,7 @@ ALTER TABLE `actividades`
 -- AUTO_INCREMENT de la tabla `ciudades`
 --
 ALTER TABLE `ciudades`
-  MODIFY `ciu_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ciu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_user`
@@ -351,7 +371,7 @@ ALTER TABLE `hoteles`
 -- AUTO_INCREMENT de la tabla `paises`
 --
 ALTER TABLE `paises`
-  MODIFY `pais_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pais_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `reservas_hotel_viajes`
