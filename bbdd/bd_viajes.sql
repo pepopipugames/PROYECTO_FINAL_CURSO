@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-04-2024 a las 10:39:35
+-- Tiempo de generación: 19-04-2024 a las 08:57:45
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -21,6 +21,30 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bd_viajes`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `paises_delete` (IN `_id` INT)  DELETE FROM paises WHERE pais_id = _id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `paises_insert` (IN `_nombre` VARCHAR(50))  INSERT INTO paises VALUES
+(null, _nombre)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `paises_select_all` ()  SELECT * FROM paises ORDER by pais_nombre$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `paises_select_by_id` (IN `_id` INT)  SELECT * 
+FROM 
+	paises 
+WHERE 
+	pais_id =_id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `paises_update` (IN `_id` INT, IN `_nombre` VARCHAR(50))  UPDATE paises SET
+	pais_nombre = _nombre
+WHERE
+	pais_id = _id$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
