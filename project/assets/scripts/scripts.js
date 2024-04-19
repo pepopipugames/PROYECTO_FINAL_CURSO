@@ -1,0 +1,7 @@
+function fMostrarMenu() {
+
+}
+
+function fMostrarLogin() {
+    
+}

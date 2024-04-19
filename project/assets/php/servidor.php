@@ -13,6 +13,9 @@ if (isset($_REQUEST['peticion'])) {
             $datos['datos'] = BBDD_CTRLR::CRUD($sql, 'i');
             echo json_encode($datos);
             break;
+        // case "EjemploEvitarInyecciones":
+        //     $SQLpreparado = $db->prepare('INSERT INTO table (column) VALUES (:column)');
+        //     $preparedStatement->execute([ 'column' => $unsafeValue ]);
         case "EjecutarUpdateDelete":
             $sql = $_REQUEST['sql'];
             $datos['datos'] = BBDD_CTRLR::CRUD($sql, '');

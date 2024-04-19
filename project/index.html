@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Importación de JQuery -->
+    <script src="jquery-3.7.1.min.js"></script>
+    <!-- Icono de la pestaña -->
+    <link rel="icon" type="image/x-icon" href="assets/imagenes/favicon.ico">
     <link rel="stylesheet" href="assets/styles/styles.css">
     <link rel="stylesheet" href="assets/styles/modal.css">
     <title>Tuimak</title>
 </head>
-<div id="home_body">
-    <div id="home_nav">
-        <div id="n_div_logo"></div>
-        <div id="n_div_menu_desplegable"></div>
-        <div id="n_div_boton_login"></div>
-    </div>
-    <div id="home_section">
-        <div id="hs_div_slider"></div>
-        <div id="hs_div_crea_viaje"></div>
-        <div id="hs_div_registrarse"></div>
-    </div>
-    <div id="home_footer"></div>
+
+<body>
+    <!-- Landing Page, el resto van a ser modales por encima - Alex -->
+    <header>
+        <img src="assets/imagenes/Logo.PNG" alt="">
+    </header>
+    <nav>
+        <div onclick="fMostrarMenu()">Menú</div>
+        <div onclick="fMostrarLogin()">Login</div>
+    </nav>
+    <section></section>
+    <footer></footer>
 </body>
 </html>
