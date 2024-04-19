@@ -27,6 +27,11 @@ header{
     justify-content: left;
 }
 
+header>img{
+    width: 100px;
+    padding-left: 15px;
+}
+
 nav{
     grid-area: zn;
     background-color: rgb(27, 27, 27);
