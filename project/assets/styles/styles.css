@@ -46,6 +46,15 @@ section{
     flex-wrap: wrap;
 }
 
+/* MODAL MUESTRA HOTELES POR CIUDAD */
+
+#modal_seleccionar_hotel{
+    background-color: rgb(52, 23, 214);
+    display: none;
+}
+
+
+
 footer{
     grid-area: zf;
     background-color: rgb(45, 45, 45);
