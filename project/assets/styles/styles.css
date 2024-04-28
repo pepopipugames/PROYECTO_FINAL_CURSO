@@ -49,8 +49,40 @@ section{
 /* MODAL MUESTRA HOTELES POR CIUDAD */
 
 #modal_seleccionar_hotel{
-    background-color: rgb(52, 23, 214);
     display: none;
+    flex-wrap: wrap;
+    align-items: first baseline ;
+
+}
+
+.sh_hotel{
+    width: 45%;
+    height: 210px;
+    background-image: url("prueba_hotel_barcelo.jpg");
+    box-shadow: 1px 0 3px black;
+    background-size: cover;    
+    border-radius: 10px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.sh_datos_hotel{
+   width: 100%;
+   font-size: 26px;
+   font-weight: 600;
+   text-shadow: 2px 0px 0px black;
+   color: white;
+   text-align: center;
+
+}
+
+.sh_imagen_logo{
+   display: none;
+   
+
 }
 
 
