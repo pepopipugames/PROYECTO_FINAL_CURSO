@@ -61,6 +61,13 @@ if (isset($_REQUEST['peticion'])) {
             ORDER BY act_nombre ASC";
             $datos = BBDD_CTRLR::Consultas($sql);
             echo json_encode($datos);      
+            break;
+        case "Cargar_Datos_Usuario_Por_Id":
+            $usu_id=$_REQUEST['usu_id'];
+            $sql = 
+            "SELECT * FROM usuarios WHERE usu_id = '$user_id'";
+            $datos = BBDD_CTRLR::Consultas($sql);
+            echo json_encode($datos);      
             break;               
     }
 }
