@@ -68,6 +68,13 @@ if (isset($_REQUEST['peticion'])) {
             "SELECT * FROM usuarios WHERE usu_id = '$user_id'";
             $datos = BBDD_CTRLR::Consultas($sql);
             echo json_encode($datos);      
-            break;               
+            break;       
+        case "Cargar_Reservas_Por_Usuario":
+            $usu_id=$_REQUEST['usu_id'];
+            $sql = 
+            "SELECT * FROM reserva_act, reservas_hotel_viajes, usuarios WHERE usu_id = ra_usu_id AND usu_id = rhv_usu_id order by rhv_fecha, ra_fecha;";
+            $datos = BBDD_CTRLR::Consultas($sql);
+            echo json_encode($datos);      
+            break;
     }
 }
