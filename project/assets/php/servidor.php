@@ -76,5 +76,19 @@ if (isset($_REQUEST['peticion'])) {
             $datos = BBDD_CTRLR::Consultas($sql);
             echo json_encode($datos);      
             break;
+        case "Modificar_Datos_Usuario":
+            $usu_id=$_REQUEST['usu_id'];
+            $usu_nombre=$_REQUEST['usu_nombre'];
+            $usu_apellido=$_REQUEST['usu_apellido'];
+            $usu_alias=$_REQUEST['usu_alias'];
+            $usu_pass=$_REQUEST['usu_pass'];
+            $usu_documento_identificacion=$_REQUEST['usu_documento_identificacion'];
+            $usu_telefono=$_REQUEST['usu_telefono'];
+            $usu_fnac=$_REQUEST['usu_fnac'];
+            $sql = 
+            "CALL usuarios_update('$usu_nombre','$usu_apellido','$usu_alias','$usu_pass','$usu_documento_identificacion','$usu_telefono','$usu_fnac','$usu_id')";
+            $datos = BBDD_CTRLR::Consultas($sql);
+            echo json_encode($datos);      
+            break;
     }
 }
