@@ -19,11 +19,14 @@
     </div>
     <!-- Landing Page, el resto van a ser modales por encima - Alex -->
     <header>
-        <img src="assets/imagenes/Logo.PNG" alt="">
+        <div id="div_logo" onclick="fMostrarHome()"><img src="assets/imagenes/Logo.PNG" alt=""></div>
+        <div id="div_login" onclick="fMostrarLogin()"><img src="Assets/imagenes/usuario.png" alt=""></div>
+        <div id="div_menu" onclick="fMostrarMenu()"><img src="Assets/imagenes/menu.png" alt=""></div>
     </header>
     <nav>
-        <div onclick="fMostrarMenu()">Menú</div>
-        <div onclick="fMostrarLogin()">Login</div>
+        <div onclick="fMostrarPrepararViaje()">Prepara tu viaje</div>
+        <div onclick="fMostrarHoteles()">Hoteles</div>
+        <div onclick="fMostrarActividades()">Actividades</div>
     </nav>
     <section>
         <!-- MODAL QUE MUESTRA TODOS LOS HOTELES DISPONIBLES  -->
@@ -66,10 +69,97 @@
                 </div>
             </div>
         </div>
+        <!-- MODAL HOME  -->
+        <div id="modal_home">
+            <div id="slider">
+            </div>
+            <div class="bloques_home">
+                <div id="titulo_cta_b1">What is Lorem Ipsum?</div>
+                <div id="descripcion_cta_b1">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                <div id="div_boton_b1">
+                 <div id="boton_cta_home_b1">Crea tu viaje</div>
+                </div>
+            </div>
+            <div class="bloques_home">
+                <div id="titulo_cta_b2">What is Lorem Ipsum? Lorem Ipsum is simply dummy. </div>
+                <div id="descripcion_cta_b2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</div>
+            </div>
+            <div class="bloques_home">
+                <div id="titulo_cta_b3">What is Lorem Ipsum?</div>
+                <div id="descripcion_cta_b3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                <div id="div_boton_b3">
+                 <div id="boton_cta_home_b3">Regístrate</div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL LOGIN  -->
+        <div id="modal_login">
+            <div id="login_formulario">
+                <div id="titulo_login">Accede a tu cuenta</div>
+                <div class="login_datos">Username</div>
+                <div class="cajon_input">
+                   <input type="text" name="" id="alias_login"> 
+                </div>
+                <div class="login_datos">Contraseña</div>
+                <div class="cajon_input">
+                    <input type="text" name="" id="password_login"> 
+                 </div>
+                <div class="div_boton_login">
+                    <div id="boton_login">Acceder</div>
+                   </div>
+            </div>
+            <div id="login_registro">
+                <div id="titulo_cta_login">What is Lorem Ipsum?</div>
+                <div id="descripcion_cta_login">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                <div class="div_boton_login">
+                 <div id="boton_cta_login">Regístrate</div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL REGISTRO  -->
+        <div id="modal_registro">
+            <div id="titulo_registro">Regístrate</div>
+                <div class="registro_datos">Nombre</div>
+                <div class="cajon_input">
+                   <input type="text" name="" id="nombre_registro"> 
+                </div>
+                <div class="registro_datos">Apellidos</div>
+                <div class="cajon_input">
+                    <input type="text" name="" id="apellidos_registro"> 
+                 </div>
+                 <div class="registro_datos">Username</div>
+                 <div class="cajon_input">
+                     <input type="text" name="" id="alias_registro"> 
+                  </div>
+                  <div class="registro_datos">Contraseña</div>
+                  <div class="cajon_input">
+                      <input type="text" name="" id="password_registro"> 
+                   </div>
+                   <div class="registro_datos">Introduce de nuevo la contraseña</div>
+                   <div class="cajon_input">
+                       <input type="text" name="" id="password_registro"> 
+                    </div>
+                    <div class="registro_datos">Documento de identificación</div>
+                    <div class="cajon_input">
+                        <input type="text" name="" id="password_registro_r"> 
+                     </div>
+                     <div class="registro_datos">Teléfono</div>
+                    <div class="cajon_input">
+                        <input type="text" name="" id="telefono_registro"> 
+                     </div>
+                     <div class="registro_datos">Fecha de nacimiento</div>
+                    <div class="cajon_input">
+                        <input type="date" name="" id="telefono_registro"> 
+                     </div>                                           
+                <div class="div_boton_login">
+                    <div id="boton_login">Crear Cuenta</div>
+                   </div>
+        </div>
 
-
+         <!-- MODAL MENU MOBILE  -->
+       
 
     </section>
-    <footer></footer>
+    <footer>&copy TUIMAK 2024 </footer>
 </body>
 </html>
