@@ -28,6 +28,23 @@ function fMostrarLogin() {
     
 }
 
+// Muestra la modal de los hoteles
+
+function fMostrarHoteles(){
+
+}
+
+// Muestra la modal de las actividades
+
+function fMostrarActividades(){
+    
+}
+
+// Muestra la modal principal de preparar viaje (donde eliges la ciudad primero)
+
+function fMostrarPrepararViaje(){
+    
+}
 // Muestra la Home, pulsando el logo que está en el header
 
 function fMostrarHome(){
