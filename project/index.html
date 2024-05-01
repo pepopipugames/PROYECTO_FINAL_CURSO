@@ -88,7 +88,7 @@
                 <div id="titulo_cta_b3">What is Lorem Ipsum?</div>
                 <div id="descripcion_cta_b3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
                 <div id="div_boton_b3">
-                 <div id="boton_cta_home_b3">Regístrate</div>
+                 <div id="boton_cta_home_b3" onclick="fMostrarRegistro()">Regístrate</div>
                 </div>
             </div>
         </div>
@@ -105,14 +105,15 @@
                     <input type="text" name="" id="password_login"> 
                  </div>
                 <div class="div_boton_login">
-                    <div id="boton_login">Acceder</div>
+                    <div id="boton_login" onclick="fLogin()">Acceder</div>
                    </div>
+                <div id="div_error_login"></div>
             </div>
             <div id="login_registro">
                 <div id="titulo_cta_login">What is Lorem Ipsum?</div>
                 <div id="descripcion_cta_login">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
                 <div class="div_boton_login">
-                 <div id="boton_cta_login">Regístrate</div>
+                 <div id="boton_cta_login" onclick="fMostrarRegistro()">Regístrate</div>
                 </div>
             </div>
         </div>
@@ -137,11 +138,11 @@
                    </div>
                    <div class="registro_datos">Introduce de nuevo la contraseña</div>
                    <div class="cajon_input">
-                       <input type="text" name="" id="password_registro"> 
+                       <input type="text" name="" id="password_registro_r"> 
                     </div>
                     <div class="registro_datos">Documento de identificación</div>
                     <div class="cajon_input">
-                        <input type="text" name="" id="password_registro_r"> 
+                        <input type="text" name="" id="nif_registro"> 
                      </div>
                      <div class="registro_datos">Teléfono</div>
                     <div class="cajon_input">
@@ -149,15 +150,19 @@
                      </div>
                      <div class="registro_datos">Fecha de nacimiento</div>
                     <div class="cajon_input">
-                        <input type="date" name="" id="telefono_registro"> 
+                        <input type="date" name="" id="fnac_registro"> 
                      </div>                                           
                 <div class="div_boton_login">
-                    <div id="boton_login">Crear Cuenta</div>
+                    <div id="boton_registro" onclick="fRegistrar()">Crear Cuenta</div>
                    </div>
+                <div id="div_error_registro"></div>
         </div>
-
          <!-- MODAL MENU MOBILE  -->
-       
+       <div id="modal_menu_mobile">
+        <div class="opciones_menu">Prepara tu viaje</div>
+        <div class="opciones_menu">Hoteles</div>
+        <div class="opciones_menu">Actividades</div>
+       </div>
 
     </section>
     <footer>&copy TUIMAK 2024 </footer>
