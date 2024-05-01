@@ -101,21 +101,17 @@ section{
 #modal_seleccionar_hotel{
     display: none;
     flex-wrap: wrap;
-    align-items: first baseline ;
 
 }
 
 .sh_hotel{
     width: 45%;
     height: 210px;
-    background-image: url("prueba_hotel_barcelo.jpg");
     box-shadow: 1px 0 3px black;
     background-size: cover;    
     border-radius: 10px;
     margin: 20px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
 }
 
 
@@ -123,17 +119,32 @@ section{
    width: 100%;
    font-size: 26px;
    font-weight: 600;
-   text-shadow: 2px 0px 0px black;
-   color: white;
+   text-shadow: 2px 0px 0px rgb(255, 255, 255);
+   z-index: 10;
+   color: rgb(0, 0, 0);
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
    text-align: center;
-
 }
 
 .sh_imagen_logo{
-   display: none;
-   
+   border-radius: 10px;
+   height: 100%;
+   width: 100%;
 
 }
+
+.sh_imagen_logo > img{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    opacity: 50%;
+
+}
+
+
 
 /* MODAL HOME */
 
@@ -306,7 +317,7 @@ section{
 #modal_login{
     width: 100%;
     height: 100%;
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
