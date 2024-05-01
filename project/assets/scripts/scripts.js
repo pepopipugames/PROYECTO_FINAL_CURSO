@@ -16,6 +16,33 @@ function fMostrarFormularios(nombre_formulario_con_almohadilla) {
 
 }
 
+function fMostrarModal(nombre_modal_con_almohadilla) {
+
+    console.log(nombre_modal_con_almohadilla);
+    
+    
+    // OCULTAMOS TODOS LOS DIV (ESTOS VAN A SER TODOS MODALES) -> LOS GUARDAMOS EN UNA LISTA
+
+    let lista_modales =  document.querySelectorAll("section > div");
+
+
+    lista_modales.forEach(item => {
+        item.style.display = "none";
+        console.log(item)
+        
+        
+    });
+
+    console.log("HOLA")
+
+    document.querySelector(nombre_modal_con_almohadilla).style.display = "flex";
+
+    
+
+}
+
+
+
 // Muestra el menu que se ve solo en version mobile
 
 function fMostrarMenu() {
