@@ -508,6 +508,21 @@ section{
     margin: 10px;
 }
 
+#boton_registro{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 150px;
+    height: 30px;
+    margin: 20px;
+}
+
+
 /* MODAL MENU MOBILE */
 
 #modal_menu_mobile{
