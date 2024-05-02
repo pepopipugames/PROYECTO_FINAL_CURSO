@@ -34,6 +34,7 @@ function fMostrarModal(nombre_modal_con_almohadilla) {
     document.querySelector(nombre_modal_con_almohadilla).style.display = "flex";
 }
 
+<<<<<<< HEAD
 
 
 // Muestra el menu que se ve solo en version mobile
@@ -109,6 +110,8 @@ function fMostrarRegistro(){
 
 }
 
+=======
+>>>>>>> pfc-ajustes
 // Boton de registrar, hace un insert a usuarios
 
 function fRegistrar(){

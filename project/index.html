@@ -20,14 +20,20 @@
     </div>
     <!-- Landing Page, el resto van a ser modales por encima - Alex -->
     <header>
+<<<<<<< HEAD
         <div id="div_logo" onclick="fMostrarHome()"><img src="assets/imagenes/Logo.PNG" alt=""></div>
         <div id="div_login" onclick="fMostrarLogin()"><img src="assets/imagenes/usuario.png" alt=""></div>
         <div id="div_menu" onclick="fMostrarMenu()"><img src="assets/imagenes/menu.png" alt=""></div>
+=======
+        <div id="div_logo" onclick="fMostrarModal('#modal_home')"><img src="assets/imagenes/Logo.PNG" alt=""></div>
+        <div id="div_login" onclick="fMostrarModal('#modal_login')"><img src="Assets/imagenes/usuario.png" alt=""></div>
+        <div id="div_menu" onclick="fMostrarModal('#modal_menu_mobile')"><img src="Assets/imagenes/menu.png" alt=""></div>
+>>>>>>> pfc-ajustes
     </header>
     <nav>
-        <div onclick="fMostrarPrepararViaje()">Prepara tu viaje</div>
-        <div onclick="fMostrarModal('#modal_seleccionar_hotel')">Hoteles</div>
-        <div onclick="fMostrarActividades()">Actividades</div>
+        <div onclick="fMostrarModal('#modal_preparar_viaje')">Prepara tu viaje</div> 
+        <div onclick="fMostrarModal('#modal_info_hoteles')">Hoteles</div>
+        <div onclick="fMostrarModal('#modal_info_actividades')">Actividades</div>
     </nav>
     <section>
         <!-- MODAL QUE MUESTRA TODOS LOS HOTELES DISPONIBLES  -->
@@ -69,7 +75,7 @@
                 <div id="titulo_cta_b1">What is Lorem Ipsum?</div>
                 <div id="descripcion_cta_b1">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
                 <div id="div_boton_b1">
-                 <div id="boton_cta_home_b1">Crea tu viaje</div>
+                 <div id="boton_cta_home_b1" onclick="fMostrarModal('#modal_preparar_viaje')">Crea tu viaje</div>
                 </div>
             </div>
             <div class="bloques_home">
@@ -80,7 +86,7 @@
                 <div id="titulo_cta_b3">What is Lorem Ipsum?</div>
                 <div id="descripcion_cta_b3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
                 <div id="div_boton_b3">
-                 <div id="boton_cta_home_b3" onclick="fMostrarRegistro()">Regístrate</div>
+                 <div id="boton_cta_home_b3" onclick="fMostrarModal('#modal_registro')">Regístrate</div>
                 </div>
             </div>
         </div>
@@ -105,7 +111,7 @@
                 <div id="titulo_cta_login">What is Lorem Ipsum?</div>
                 <div id="descripcion_cta_login">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
                 <div class="div_boton_login">
-                 <div id="boton_cta_login" onclick="fMostrarRegistro()">Regístrate</div>
+                 <div id="boton_cta_login" onclick="fMostrarModal('#modal_registro')">Regístrate</div>
                 </div>
             </div>
         </div>
@@ -151,9 +157,9 @@
         </div>
          <!-- MODAL MENU MOBILE  -->
        <div id="modal_menu_mobile">
-        <div class="opciones_menu" onclick="fMostrarPrepararViaje()">Prepara tu viaje</div>
-        <div class="opciones_menu" onclick="fMostrarHoteles()">Hoteles</div>
-        <div class="opciones_menu" onclick="fMostrarActividades()">Actividades</div>
+        <div class="opciones_menu" onclick="fMostrarModal('#modal_preparar_viaje')">Prepara tu viaje</div>
+        <div class="opciones_menu" onclick="fMostrarModal('#modal_info_hoteles')">Hoteles</div>
+        <div class="opciones_menu" onclick="fMostrarModal('#modal_info_actividades')">Actividades</div>
        </div>
        <div id="modal_preparar_viaje">
             <div id="pv_ciudades">
