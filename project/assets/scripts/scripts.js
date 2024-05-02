@@ -34,32 +34,6 @@ function fMostrarModal(nombre_modal_con_almohadilla) {
     document.querySelector(nombre_modal_con_almohadilla).style.display = "flex";
 }
 
-<<<<<<< HEAD
-
-
-// Muestra el menu que se ve solo en version mobile
-
-function fMostrarMenu() {
-
-}
-
-// Muestra la modal login, donde puede loguearse o redirigir al registro
-
-function fMostrarLogin() {
-    
-}
-
-// Muestra la modal de los hoteles
-
-function fMostrarHoteles(){
-
-}
-
-// Muestra la modal de las actividades
-
-function fMostrarActividades(){
-    
-}
 
 // Muestra la modal principal de preparar viaje (donde eliges la ciudad primero)
 
@@ -98,20 +72,6 @@ function fMostrarPrepararViaje(){
         });
     });
 } 
-// Muestra la Home, pulsando el logo que está en el header
-
-function fMostrarHome(){
-
-}
-
-// Muestra la modal de registro, que se accede desde un banner de la Home o desde Login, que hay otro banner.
-
-function fMostrarRegistro(){
-
-}
-
-=======
->>>>>>> pfc-ajustes
 // Boton de registrar, hace un insert a usuarios
 
 function fRegistrar(){
