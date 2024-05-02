@@ -1,6 +1,7 @@
 // VARIABLES GLOBALES
 
 let id_usuario_logueado = 0; // ID DEL USUARIO CUANDO SE REGISTRA
+let id_hotel_seleccionado; // ID DEL HOTEL SELECCIONADO
 
 function fMostrarFormularios(nombre_formulario_con_almohadilla) {
     //Guardamos todos los formularios en una lista de formularios con el querySelectorAll
@@ -171,5 +172,49 @@ function fLogin(){
         document.querySelector("#div_error_login").innerHTML = "Username o contraseña incorrecta. Acceso denegado."
     }
         
+}
+
+function fMostrarHotelesCiudad(id_ciudad){
+
+    let sql = `SELECT * FROM hoteles where hot_ciu_id = ${id_ciudad}`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
+
+    fetch(URL)
+            .then((response) => response.json())
+            .then((data) => {
+
+            //Para comprobar que funciona
+            console.log(data);
+
+            let html = "";
+            for (let i = 0; i < data.datos.length; i++) {
+               
+                html += `<div class="sh_hotel" onclick="imprimir(${data.datos[i].hot_id})">`;
+                html +=     `<div class="sh_datos_hotel">`
+                html +=         `<div class="sh_nombre_hotel">${data.datos[i].hot_nombre}</div>`;
+                html +=         `<div class="sh_precio_noche">${data.datos[i].hot_precio_noche} €</div>`;
+                html +=     `</div>`;
+                html +=     `<div class="sh_imagen_logo">`;
+                html +=     `<img src="assets/imagenes/${data.datos[i].hot_logo}">`;
+                html +=     `</div>`;
+                html += `</div>`;
+            }
+
+            console.log(html);
+
+            document.querySelector("#modal_seleccionar_hotel").innerHTML = html;
+
+          })
+
+          .finally(()=>{
+            
+            fMostrarModal("#modal_seleccionar_hotel");
+            
+          })
+
+}
+
+function imprimir(x){
+    console.log(x)
 }
 
