@@ -220,4 +220,136 @@ function fGuardarHotelSeleccionado(x){
     fMostrarModal("#modal_pregunta_actividades");
     
 }
+// Muestra la modal principal de preparar viaje (donde eliges la ciudad primero)
+
+function fMostrarPrepararViaje() {
+    // Declaramos 2 array list para el finally
+    let lista_ciudades = [];
+    let lista_fotos = [];
+    // Hacemos la peticion de 6 ciudades aleatorias
+    let sql = "SELECT ciu_nombre, ciu_foto FROM ciudades ORDER BY rand() LIMIT 6;";
+    let URL = "assets/php/servidor.php?peticion=EjecutarSelect";
+    URL += "&sql=" + sql;
+    fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+            let html = "";
+            console.log("Ciudades: ", data)
+            data.datos.forEach(item => {
+                // Reemplazamos los espacios en el nombre de la ciudad por guiones bajos, los ids no aceptan espacios
+                let ciudad_nombre = item.ciu_nombre.replace(/\s+/g, '_');
+                lista_ciudades.push(ciudad_nombre);
+                lista_fotos.push(item.ciu_foto);
+                html += `<div class='ciudades' onclick='fSeleccionarFecha("${ciudad_nombre}")'>`
+                html += `    <div id='${ciudad_nombre}'>`
+                html += `       ${item.ciu_nombre}`
+                html += "    </div>"
+                html += "</div>"
+            });
+            // Las imprimimos dentro de #pv_ciudades
+            document.querySelector("#pv_ciudades").innerHTML = html;
+            fMostrarModal("#modal_preparar_viaje");
+        })
+        .finally(() => {
+            lista_ciudades.forEach((item, indice) => {
+                document.querySelector(`#${item}`).style.backgroundImage = `url(../project/assets/imagenes/ciudades/${lista_fotos[indice]})`;
+                document.querySelector(`#${item}`).style.backgroundSize = "cover";
+            });
+        });
+}
+
+async function encontrarUbicacion() {
+    return new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(mostrarCiudad, handleError);
+        } else {
+            reject("Geolocation is not supported by this browser.");
+        }
+
+        function mostrarCiudad(position) {
+            const latitud = position.coords.latitude;
+            const longitud = position.coords.longitude;
+            const url = `https://geocode.maps.co/reverse?lat=${latitud}&lon=${longitud}&api_key=6633f25401912704812043ibt94da09`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('La respuesta del servidor es not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const ciudadUsuario = data.address.city;
+                    console.log(`Estás en ${ciudadUsuario}.`);
+                    resolve(ciudadUsuario);
+                })
+                .catch(error => reject(error));
+        }
+
+        function handleError(error) {
+            reject(error.message);
+        }
+    });
+}
+
+
+
+function obtenerFechaActual() {
+    const fecha = new Date();
+
+    let dia = fecha.getDate();
+    let mes = fecha.getMonth() + 1;
+    let year = fecha.getFullYear();
+
+    let fechaActual = `${year}/${mes}/${dia}`;
+    return fechaActual;
+}
+
+async function fSeleccionarFecha(ciudadDestino) {
+    // Obtenemos la fecha actual y la ubicacion
+    let hoy = obtenerFechaActual();
+    let ciudad_origen = await encontrarUbicacion();
+    let html = "";
+    // Rellenamos los combos
+    let sql = "SELECT ciu_nombre FROM ciudades;";
+    let URL = "assets/php/servidor.php?peticion=EjecutarSelect";
+    URL += "&sql=" + sql;
+    fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+            data.datos.forEach(item => {
+                html += `<option value="${item.ciu_nombre}" id="${item.ciu_nombre}og">${item.ciu_nombre}</option>`;
+            });
+            // Populate the dropdowns with options
+            document.querySelector("#select_co").innerHTML = html;
+            html = "";
+            data.datos.forEach(item => {
+                html += `<option value="${item.ciu_nombre}" id="${item.ciu_nombre}de">${item.ciu_nombre}</option>`;
+            });
+            document.querySelector("#select_cd").innerHTML = html;
+
+            // Select the desired options based on the cities
+            try {
+                document.querySelector(`#${ciudad_origen}og`).selected = true;
+                document.querySelector(`#${ciudadDestino}de`).selected = true;
+            } catch (error) {
+                console.log(error);
+                ciudad_origen = "Selecciona la ciudad de origen";
+                // Handle the case when city is not found
+            }
+            // Convertimos hoy a un objeto Date de JavaScript
+            let fechaActual = new Date(hoy);
+            // Formateamos la fechaActual a yyyy-MM-dd
+            let fechaFormateada = fechaActual.toISOString().split('T')[0];
+
+            // Establecemos el valor y el mínimo del input de la fecha de inicio con el día actual 
+            document.querySelector("#fecha_inicio").value = fechaFormateada;
+            document.querySelector("#fecha_inicio").min = fechaFormateada;
+            fMostrarModal("#modal_seleccionar_transporte");
+        })
+        .catch((error) => {
+            console.log(error);
+            // Handle fetch error
+        });
+}
 
