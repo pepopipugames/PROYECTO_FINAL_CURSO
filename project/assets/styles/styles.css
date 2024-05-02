@@ -144,6 +144,53 @@ section{
 
 }
 
+/* MODAL PREGUNTA ACTIVIDADES */
+
+#modal_pregunta_actividades{
+    display: none;
+    align-items: center;
+    justify-content: center;
+   
+
+    
+}
+
+#pa_div{
+    width: 88%;
+    height: 200px;
+    border: 2px solid black;
+    padding: 4px;
+    padding-bottom: 10px;
+}
+
+
+
+#pa_pregunta{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+}
+
+#pa_opciones{
+    display: flex;
+    justify-content: space-evenly;
+ 
+    width: 100%;
+    height: 50%;
+}
+
+#pa_opciones > div{
+    border: 2px solid black;
+    width: 48%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 
 
 /* MODAL HOME */

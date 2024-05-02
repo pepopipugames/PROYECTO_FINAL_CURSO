@@ -217,5 +217,7 @@ function fMostrarHotelesCiudad(id_ciudad){
 function fGuardarHotelSeleccionado(x){
     id_hotel_seleccionado = x;
     console.log(id_hotel_seleccionado);
+    fMostrarModal("#modal_pregunta_actividades");
+    
 }
 
