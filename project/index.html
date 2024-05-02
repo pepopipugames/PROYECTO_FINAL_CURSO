@@ -151,6 +151,31 @@
                 
             </div>
        </div>
+               <!-- MODAL TRANSPORTES  -->
+               <div id="modal_seleccionar_transporte">
+                <div id="selector_ciudades">
+                    <div id="ciudad_origen">
+                        <label for="select_co">Elige una ciudad de origen</label>
+                        <select name="select_co" id="select_co">
+                        </select> 
+                    </div>
+                    <div id="ciudad_destino">
+                        <label for="select_cd">Elige una ciudad de destino</label>
+                        <select name="select_cd" id="select_cd">
+                        </select> 
+                    </div>
+                    <div id="boton_transportes" onclick="fMostrarTransporte()"></div>
+                </div>
+                <div id="selector_fechas">
+                    <label for="inicio">Selecciona la fecha de ida:</label>
+                    <input type="date" id="fecha_inicio" name="fecha-inicio" value="" min="" max=""/>
+    
+                    <label for="vuelta">Selecciona la fecha de vuelta:</label>
+                    <input type="date" id="fecha_vuelta" name="fecha-vuelta" value="" min="" max=""/>
+                </div>
+                <div id="selector_transporte">
+                </div>
+            </div>
 
     </section>
     <footer>&copy TUIMAK 2024 </footer>
