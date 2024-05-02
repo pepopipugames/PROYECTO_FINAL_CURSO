@@ -189,7 +189,7 @@ function fMostrarHotelesCiudad(id_ciudad){
             let html = "";
             for (let i = 0; i < data.datos.length; i++) {
                
-                html += `<div class="sh_hotel" onclick="imprimir(${data.datos[i].hot_id})">`;
+                html += `<div class="sh_hotel" onclick="fGuardarHotelSeleccionado(${data.datos[i].hot_id})">`;
                 html +=     `<div class="sh_datos_hotel">`
                 html +=         `<div class="sh_nombre_hotel">${data.datos[i].hot_nombre}</div>`;
                 html +=         `<div class="sh_precio_noche">${data.datos[i].hot_precio_noche} €</div>`;
@@ -214,7 +214,8 @@ function fMostrarHotelesCiudad(id_ciudad){
 
 }
 
-function imprimir(x){
-    console.log(x)
+function fGuardarHotelSeleccionado(x){
+    id_hotel_seleccionado = x;
+    console.log(id_hotel_seleccionado);
 }
 
