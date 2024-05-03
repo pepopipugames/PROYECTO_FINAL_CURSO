@@ -82,6 +82,11 @@ function fRegistrar() {
             document.querySelector("#nif_registro").value = "";
             document.querySelector("#telefono_registro").value = "";
             document.querySelector("#fnac_registro").value = "";
+            document.querySelector("#div_error_registro").innerHTML = "";
+
+            // Redirigimos al login para que proceda a loguearse
+
+            fMostrarModal("#modal_login");
 
         })
 }
@@ -137,6 +142,11 @@ function fLogin() {
         .finally(() => {
             document.querySelector('#alias_login').value = "";
             document.querySelector('#password_login').value = "";
+
+            // Redirigimos al perfil del usuario
+
+            fMostrarModal("#modal_perfil_usuario");
+
         })
 
 }
