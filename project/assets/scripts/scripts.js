@@ -2,6 +2,7 @@
 
 let id_usuario_logueado = 0; // ID DEL USUARIO CUANDO SE REGISTRA
 let id_hotel_seleccionado; // ID DEL HOTEL SELECCIONADO
+let datos_usuario = null; // DATOS DEL USUARIO QUE HAYA HECHO LOG IN
 
 function fMostrarFormularios(nombre_formulario_con_almohadilla) {
     //Guardamos todos los formularios en una lista de formularios con el querySelectorAll
@@ -106,25 +107,22 @@ function fLogin() {
             //Para comprobar que funciona
             console.log(data);
 
-        })
+            datos_usuario = data.datos[0];
 
-        .finally(() => {
-            document.querySelector('#alias_login').value = "";
-            document.querySelector('#password_login').value = "";
-        })
-
-    // En el caso de que este logueado
+                // En el caso de que este logueado
 
     if (data.datos.length > 0) {
 
         // Ocultamos el login 
         document.querySelector("#modal_login").style.display = 'none';
 
-        // Mostramos el login de cuando ya esta logueado (el que hace David) o la home
+        // Mostramos en el nav el div que da opcion al usuario a acceder a sus datos personales
 
+        document.querySelector("#div_perfil_usuario").style.display = "block";
 
         // Guardamos la variable del ID del usuario
         id_usuario_logueado = data.datos[0].usu_id;
+        datos_usuario = data.datos[0];
 
 
     } else {
@@ -133,6 +131,13 @@ function fLogin() {
         document.querySelector("#div_error_login").style.display = 'flex';
         document.querySelector("#div_error_login").innerHTML = "Username o contraseña incorrecta. Acceso denegado."
     }
+
+        })
+
+        .finally(() => {
+            document.querySelector('#alias_login').value = "";
+            document.querySelector('#password_login').value = "";
+        })
 
 }
 
@@ -395,4 +400,36 @@ async function fMostrarTransportes() {
                 console.error("Error al buscar el ID de la ciudad:", error);
             }
         })
-};  
+}
+
+//FUNCION PARA MOSTRAR UNA TARJETA CON LOS DATOS DEL USUARIO
+function fMostrarPerfilUsuario() {
+
+    //MOSTRAR EL MODAL NECESARIO
+
+    fMostrarModal("#modal_perfil_usuario");
+
+    //GENERAR LOS DATOS PRINCIPALES DEL USUARIO
+
+    document.querySelector("#alias_user").innerHTML = "Tu nombre de usuario: " + datos_usuario.usu_alias;
+    document.querySelector("#nombre_user").innerHTML = "Nombre completo: " + datos_usuario.usu_nombre + " " + datos_usuario.usu_apellido ;
+    document.querySelector("#password_user").innerHTML = "Tu contraseña: ************";
+}
+
+function fMostrarPerfilUsuarioAmpliado() {
+
+     //MOSTRAR EL MODAL NECESARIO
+
+     fMostrarModal("#modal_perfil_usuario_ampliado");
+
+     //GENERAR LOS DATOS PRINCIPALES DEL USUARIO
+ 
+     document.querySelector("#alias_user_ampl").innerHTML = "Tu nombre de usuario: " + datos_usuario.usu_alias;
+     document.querySelector("#nombre_user_ampl").innerHTML = "Nombre: " + datos_usuario.usu_nombre;
+     document.querySelector("#apellido_user_ampl").innerHTML = "Apellidos: " + datos_usuario.usu_apellido;
+     document.querySelector("#password_user_ampl").innerHTML = "Tu contraseña: ************";
+     document.querySelector("#nif_user_ampl").innerHTML = "Documento de identificación: " + datos_usuario.usu_documento_identificacion;
+     document.querySelector("#telefono_user_ampl").innerHTML = "Telefono: " + datos_usuario.usu_telefono;
+     document.querySelector("#nacimiento_user_ampl").innerHTML = "Fecha de nacimiento: " + datos_usuario.usu_fnac;
+
+}
