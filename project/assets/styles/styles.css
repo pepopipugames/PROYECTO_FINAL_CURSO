@@ -681,6 +681,20 @@ section{
     align-items: center;
 }
 
+/* TRANSPORTES ENCONTRADOS */
+#modal_transportes_encontrados {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal_transportes_encontrados > div {
+    margin: 5px;
+}
+
+
 /* FOOTER */
 
 footer{

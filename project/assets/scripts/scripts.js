@@ -344,7 +344,6 @@ async function fSeleccionarFecha(ciudadDestino) {
             data.datos.forEach(item => {
                 html += `<option value="${item.ciu_nombre}" id="${item.ciu_nombre}og">${item.ciu_nombre}</option>`;
             });
-            // Populate the dropdowns with options
             document.querySelector("#select_co").innerHTML = html;
             html = "";
             data.datos.forEach(item => {
@@ -352,14 +351,12 @@ async function fSeleccionarFecha(ciudadDestino) {
             });
             document.querySelector("#select_cd").innerHTML = html;
 
-            // Select the desired options based on the cities
             try {
                 document.querySelector(`#${ciudad_origen}og`).selected = true;
                 document.querySelector(`#${ciudadDestino}de`).selected = true;
             } catch (error) {
                 console.log(error);
                 ciudad_origen = "Selecciona la ciudad de origen";
-                // Handle the case when city is not found
             }
             // Convertimos hoy a un objeto Date de JavaScript
             let fechaActual = new Date(hoy);
@@ -369,16 +366,20 @@ async function fSeleccionarFecha(ciudadDestino) {
             // Establecemos el valor y el mínimo del input de la fecha de inicio con el día actual 
             document.querySelector("#fecha_vuelta").value = fechaFormateada;
             document.querySelector("#fecha_vuelta").min = fechaFormateada;
+            document.querySelector("#fecha_ida").value = fechaFormateada;
+            document.querySelector("#fecha_ida").min = fechaFormateada;
             fMostrarModal("#modal_seleccionar_transporte");
         })
         .catch((error) => {
             console.log(error);
-            // Handle fetch error
         });
 }
 
-// Realizamos una solicitud de autocompletado para un código IATA
-// Devuelve sugerencias de nombres
+/*
+FUNCION PARA LA API DE RAPID API
+Nos hemos quedado sin peticiones y de momento no funciona. 
+Tiraremos de la BBDD.
+Ya le preguntare a Javier si conoce alguna API simple
 async function buscarIDCiudad(codigoIATA, fecha) {
     if (fecha != null) {
         const options = {
@@ -393,7 +394,6 @@ async function buscarIDCiudad(codigoIATA, fecha) {
                 'X-RapidAPI-Host': 'sky-scanner3.p.rapidapi.com'
             }
         };
-
         try {
             const respuesta = await axios.request(options);
             // respuesta.data.data? chequea si respuesta.data.data existe
@@ -408,31 +408,65 @@ async function buscarIDCiudad(codigoIATA, fecha) {
             if (entityId) {
                 return entityId;
             } else {
-                console.error("No entityId found in the response data.");
+                console.error("No se ha encontrado ningun ID de navegacion.");
             }
         } catch (error) {
-            console.error("Error fetching data:", error);
+            console.error("Error en el fetch de los datos:", error);
         }
     }
 }
+*/
 
+function fEncontrarViajes(ciu_origen, ciu_destino, fecha_ida, fecha_vuelta) {
+    let sql = `SELECT * FROM viajes JOIN ciudades ON ciudades.ciu_id = viajes.viaje_ciu_origen WHERE viaje_ciu_origen = ${ciu_origen} AND viaje_ida LIKE CONCAT('%', '${fecha_ida}', '%');`;
+    let URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
+    let html = "";
+    fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.datos == 0) {
+                html += "<div>NO HAY VIAJES PARA LOS PARAMETROS SELECCIONADOS</div>"
+            } else {
+                html += `<div id="transporte_ciudad_origen">Salida desde : ${data.datos[0].ciu_nombre}</div>`
+                html += `<div id="hora_salida_co">Fecha y hora de salida: ${data.datos[0].viaje_ida}</div>`
+                sql = `SELECT * FROM viajes JOIN ciudades ON ciudades.ciu_id = viajes.viaje_ciu_destino WHERE viaje_ciu_destino = ${ciu_destino} AND viaje_vuelta LIKE CONCAT('%', '${fecha_vuelta}', '%');`
+                URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
+                fetch(URL)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        html += `<div id="transporte_ciudad_destino">Salida desde: ${data.datos[0].ciu_nombre}</div>`
+                        html += `<div id="hora_salida_de">Fecha y hora de salida: ${data.datos[0].viaje_vuelta}</div>`
+                        html += `<div id="precio_viaje">Precio total: ${data.datos[0].viaje_precio}</div>`
+                    })
+                    .finally(() => {
+                        document.querySelector("#modal_transportes_encontrados").innerHTML = html;
+                        fMostrarModal("#modal_transportes_encontrados");
+                    })
+            }
+        })
+        .finally (() => {
+            fMostrarHotelesCiudad(ciu_destino);
+        })
+}
 
-async function fMostrarTransportes() {
+function fMostrarTransportes() {
     let ciudad_origen = document.querySelector("#select_co").value;
     let ciudad_destino = document.querySelector("#select_cd").value;
 
-    let ciudad_origen_id;
+    let ciudad_origen_id = 0;
     let ciudad_origen_codigo;
-    let ciudad_destino_id;
+    let ciudad_destino_id = 0;
     let ciudad_destino_codigo;
 
     let fecha_ida = document.querySelector("#fecha_ida").value;
     let fecha_vuelta = document.querySelector("#fecha_vuelta").value;
 
+    /*
     let c_org_vuelo_entidad_id;
     let c_dest_vuelo_entidad_id;
     let c_org_hotel_entidad_id;
     let c_dest_hotel_entidad_id;
+    */
 
     console.log(fecha_ida, fecha_vuelta);
     // Pedir al servidor que nos devuelva el id de la ciudad y el codigo del aeropuerto de las ciudades
@@ -447,14 +481,22 @@ async function fMostrarTransportes() {
 
             ciudad_destino_id = data.datos[1].ciu_id;
             ciudad_destino_codigo = data.datos[1].ciu_codigo;
-
+            /*
+            PARTE DE LA FUNCIONALIDAD DE USO DE RAPID API
             try {
                 c_org_vuelo_entidad_id = await buscarIDCiudad(ciudad_origen_codigo, fecha_ida);
                 c_dest_vuelo_entidad_id = await buscarIDCiudad(ciudad_destino_codigo, fecha_vuelta);
             } catch (error) {
                 console.error("Error al buscar el ID de la ciudad:", error);
             }
+            */
+            // De momento hacemos peticiones a la BBDD
         })
+        .finally(() => {
+            console.log("IDs: ", ciudad_origen_id, ciudad_destino_id)
+            fEncontrarViajes(ciudad_origen_id, ciudad_destino_id, fecha_ida, fecha_vuelta);
+        })
+
 }
 
 //FUNCION PARA MOSTRAR UNA TARJETA CON LOS DATOS DEL USUARIO
