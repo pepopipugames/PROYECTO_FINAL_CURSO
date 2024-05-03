@@ -25,6 +25,7 @@
         <div id="div_logo" onclick="fMostrarModal('#modal_home')"><img src="assets/imagenes/Logo.PNG" alt=""></div>
         <div id="div_login" onclick="fMostrarModal('#modal_login')"><img src="assets/imagenes/usuario.png" alt=""></div>
         <div id="div_menu" onclick="fMostrarModal('#modal_menu_mobile')"><img src="assets/imagenes/menu.png" alt=""></div>
+        <div id="div_perfil_usuario" onclick="fMostrarPerfilUsuario()"> Mi perfil </div>
     </header>
     <nav>
         <div onclick="fMostrarPrepararViaje()">Prepara tu viaje</div> 
@@ -179,6 +180,32 @@
                 </div>
             </div>
 
+            <div id="modal_perfil_usuario">
+                <div id="div_informacion">
+                    <div id="titulo_perfil_usuario">Mi perfil</div>
+                    <div id="alias_user"></div>
+                    <div id="nombre_user"></div>
+                    <div id="password_user"></div>
+                </div>
+                <div id="ver_reservas">Mis reservas</div>
+                <div id="ampliar_datos_user" onclick="fMostrarPerfilUsuarioAmpliado()"> Mis datos </div>
+                
+            </div>
+            <div id="modal_perfil_usuario_ampliado">
+                <div id="titulo_perfil_usuario">Mi perfil</div>
+                <div id="alias_user_ampl"></div>
+                <div id="nombre_user_ampl"></div>
+                <div id="apellido_user_ampl"></div>
+                <div id="password_user_ampl"></div>
+                <div id="nif_user_ampl"></div>
+                <div id="telefono_user_ampl"></div>
+                <div id="nacimiento_user_ampl"></div>
+
+                <div id="mpua_opciones">
+                    <div onclick="fModificarDatos()"> Modificar datos </div>
+                    <div onclick="fEliminarCuenta()"> Eliminar cuenta </div>
+                </div>
+            </div>
     </section>
     <footer>&copy TUIMAK 2024 </footer>
 </body>
