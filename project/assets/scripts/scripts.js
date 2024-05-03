@@ -20,11 +20,11 @@ function fMostrarFormularios(nombre_formulario_con_almohadilla) {
 function fMostrarModal(nombre_modal_con_almohadilla) {
 
     console.log(nombre_modal_con_almohadilla);
-    
-    
+
+
     // OCULTAMOS TODOS LOS DIV (ESTOS VAN A SER TODOS MODALES) -> LOS GUARDAMOS EN UNA LISTA
 
-    let lista_modales =  document.querySelectorAll("section > div");
+    let lista_modales = document.querySelectorAll("section > div");
 
 
     lista_modales.forEach(item => {
@@ -35,47 +35,9 @@ function fMostrarModal(nombre_modal_con_almohadilla) {
     document.querySelector(nombre_modal_con_almohadilla).style.display = "flex";
 }
 
-
-// Muestra la modal principal de preparar viaje (donde eliges la ciudad primero)
-
-function fMostrarPrepararViaje(){
-    // Declaramos 2 array list para el finally
-    let lista_ciudades = [];
-    let lista_fotos = [];
-    // Hacemos la peticion de 6 ciudades aleatorias
-    let sql = "SELECT ciu_nombre, ciu_foto FROM ciudades ORDER BY rand() LIMIT 6;";
-    let URL = "assets/php/servidor.php?peticion=EjecutarSelect";
-    URL += "&sql=" + sql;
-    fetch(URL)
-    .then((response) => response.json())
-    .then((data) => {
-        let html = "";
-        console.log("Ciudades: ", data)
-        data.datos.forEach(item => {
-            // Reemplazamos los espacios en el nombre de la ciudad por guiones bajos, los ids no aceptan espacios
-            let ciudadId = item.ciu_nombre.replace(/\s+/g, '_');
-            lista_ciudades.push(ciudadId);
-            lista_fotos.push(item.ciu_foto);
-            html += "<div class='ciudades'>"
-            html += `    <div id='${ciudadId}'>`
-            html += `       ${item.ciu_nombre}`
-            html += "    </div>"
-            html += "</div>"
-        });
-        // Las imprimimos dentro de #pv_ciudades
-        document.querySelector("#pv_ciudades").innerHTML = html;
-        fMostrarModal("#modal_preparar_viaje");
-    })
-    .finally(() => {
-        lista_ciudades.forEach((item, indice) => {
-            document.querySelector(`#${item}`).style.backgroundImage = `url(../project/assets/imagenes/ciudades/${lista_fotos[indice]})`;
-            document.querySelector(`#${item}`).style.backgroundSize = "cover";
-        });
-    });
-} 
 // Boton de registrar, hace un insert a usuarios
 
-function fRegistrar(){
+function fRegistrar() {
 
     // Lectura de todas las variables
 
@@ -90,7 +52,7 @@ function fRegistrar(){
 
     if (password != passwordR) {
         document.querySelector("#div_error_registro").style.display = 'flex';
-        document.querySelector("#div_error_registro").innerHTML = 'Las contraseñas no coinciden, por favor pruebe de nuevo.';        
+        document.querySelector("#div_error_registro").innerHTML = 'Las contraseñas no coinciden, por favor pruebe de nuevo.';
         return;
     }
 
@@ -100,33 +62,33 @@ function fRegistrar(){
     const URL = "assets/php/servidor.php?peticion=EjecutarInsert&sql=" + sql;
 
     //Debemos de pedirsela al servidor
-            
-        fetch(URL)
+
+    fetch(URL)
         .then((response) => response.json())
         .then((data) => {
-  
-          
-      })
-      
-      .finally(()=>{
 
-        // Vaciamos todo
-        document.querySelector("#nombre_registro").value = "";
-        document.querySelector("#apellidos_registro").value = "";
-        document.querySelector("#alias_registro").value = "";
-        document.querySelector("#password_registro").value = "";
-        document.querySelector("#password_registro_r").value = "";
-        document.querySelector("#nif_registro").value = "";
-        document.querySelector("#telefono_registro").value = "";
-        document.querySelector("#fnac_registro").value = "";
 
-      })
+        })
+
+        .finally(() => {
+
+            // Vaciamos todo
+            document.querySelector("#nombre_registro").value = "";
+            document.querySelector("#apellidos_registro").value = "";
+            document.querySelector("#alias_registro").value = "";
+            document.querySelector("#password_registro").value = "";
+            document.querySelector("#password_registro_r").value = "";
+            document.querySelector("#nif_registro").value = "";
+            document.querySelector("#telefono_registro").value = "";
+            document.querySelector("#fnac_registro").value = "";
+
+        })
 }
 
 
 // Comprueba que el usuario esta registrado y guardara su ID en una variable global
 
-function fLogin(){
+function fLogin() {
 
     let alias = document.querySelector("#alias_login").value;
     let password = document.querySelector("#password_login").value;
@@ -137,27 +99,27 @@ function fLogin(){
 
     // Se lo pedimos a servidor
 
-            fetch(URL)
-            .then((response) => response.json())
-            .then((data) => {
+    fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
 
             //Para comprobar que funciona
             console.log(data);
-              
-          })
-          
-          .finally(()=>{
+
+        })
+
+        .finally(() => {
             document.querySelector('#alias_login').value = "";
-            document.querySelector('#password_login').value = "";  
-          })
+            document.querySelector('#password_login').value = "";
+        })
 
     // En el caso de que este logueado
 
-    if(data.datos.length > 0) {
+    if (data.datos.length > 0) {
 
         // Ocultamos el login 
         document.querySelector("#modal_login").style.display = 'none';
-        
+
         // Mostramos el login de cuando ya esta logueado (el que hace David) o la home
 
 
@@ -171,32 +133,32 @@ function fLogin(){
         document.querySelector("#div_error_login").style.display = 'flex';
         document.querySelector("#div_error_login").innerHTML = "Username o contraseña incorrecta. Acceso denegado."
     }
-        
+
 }
 
-function fMostrarHotelesCiudad(id_ciudad){
+function fMostrarHotelesCiudad(id_ciudad) {
 
     let sql = `SELECT * FROM hoteles where hot_ciu_id = ${id_ciudad}`;
     const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
 
     fetch(URL)
-            .then((response) => response.json())
-            .then((data) => {
+        .then((response) => response.json())
+        .then((data) => {
 
             //Para comprobar que funciona
             console.log(data);
 
             let html = "";
             for (let i = 0; i < data.datos.length; i++) {
-               
+
                 html += `<div class="sh_hotel" onclick="fGuardarHotelSeleccionado(${data.datos[i].hot_id})">`;
-                html +=     `<div class="sh_datos_hotel">`
-                html +=         `<div class="sh_nombre_hotel">${data.datos[i].hot_nombre}</div>`;
-                html +=         `<div class="sh_precio_noche">${data.datos[i].hot_precio_noche} €</div>`;
-                html +=     `</div>`;
-                html +=     `<div class="sh_imagen_logo">`;
-                html +=     `<img src="assets/imagenes/${data.datos[i].hot_logo}">`;
-                html +=     `</div>`;
+                html += `<div class="sh_datos_hotel">`
+                html += `<div class="sh_nombre_hotel">${data.datos[i].hot_nombre}</div>`;
+                html += `<div class="sh_precio_noche">${data.datos[i].hot_precio_noche} €</div>`;
+                html += `</div>`;
+                html += `<div class="sh_imagen_logo">`;
+                html += `<img src="assets/imagenes/${data.datos[i].hot_logo}">`;
+                html += `</div>`;
                 html += `</div>`;
             }
 
@@ -204,21 +166,21 @@ function fMostrarHotelesCiudad(id_ciudad){
 
             document.querySelector("#modal_seleccionar_hotel").innerHTML = html;
 
-          })
+        })
 
-          .finally(()=>{
-            
+        .finally(() => {
+
             fMostrarModal("#modal_seleccionar_hotel");
-            
-          })
+
+        })
 
 }
 
-function fGuardarHotelSeleccionado(x){
+function fGuardarHotelSeleccionado(x) {
     id_hotel_seleccionado = x;
     console.log(id_hotel_seleccionado);
     fMostrarModal("#modal_pregunta_actividades");
-    
+
 }
 // Muestra la modal principal de preparar viaje (donde eliges la ciudad primero)
 
@@ -258,6 +220,8 @@ function fMostrarPrepararViaje() {
         });
 }
 
+// Hallamos la ubicacion del usuarios
+
 async function encontrarUbicacion() {
     return new Promise((resolve, reject) => {
         if (navigator.geolocation) {
@@ -292,7 +256,7 @@ async function encontrarUbicacion() {
     });
 }
 
-
+// Obtenemos la fecha actual
 
 function obtenerFechaActual() {
     const fecha = new Date();
@@ -311,7 +275,7 @@ async function fSeleccionarFecha(ciudadDestino) {
     let ciudad_origen = await encontrarUbicacion();
     let html = "";
     // Rellenamos los combos
-    let sql = "SELECT ciu_nombre FROM ciudades;";
+    let sql = "SELECT * FROM ciudades;";
     let URL = "assets/php/servidor.php?peticion=EjecutarSelect";
     URL += "&sql=" + sql;
     fetch(URL)
@@ -343,8 +307,8 @@ async function fSeleccionarFecha(ciudadDestino) {
             let fechaFormateada = fechaActual.toISOString().split('T')[0];
 
             // Establecemos el valor y el mínimo del input de la fecha de inicio con el día actual 
-            document.querySelector("#fecha_inicio").value = fechaFormateada;
-            document.querySelector("#fecha_inicio").min = fechaFormateada;
+            document.querySelector("#fecha_vuelta").value = fechaFormateada;
+            document.querySelector("#fecha_vuelta").min = fechaFormateada;
             fMostrarModal("#modal_seleccionar_transporte");
         })
         .catch((error) => {
@@ -353,3 +317,57 @@ async function fSeleccionarFecha(ciudadDestino) {
         });
 }
 
+// Función para realizar una solicitud de autocompletado para un código IATA
+async function buscarIDCiudad(codigoIATA, fecha_ida) {
+    const options = {
+        method: 'GET',
+        url: 'https://sky-scanner3.p.rapidapi.com/flights/auto-complete',
+        params: {
+            query: codigoIATA,
+            outbounddate: fecha_ida
+        },
+        headers: {
+            'X-RapidAPI-Key': '1d4918bd48msh338061def102284p1b582ejsn97259beec7b9',
+            'X-RapidAPI-Host': 'sky-scanner3.p.rapidapi.com'
+        }
+    };
+
+    try {
+        const response = await axios.request(options); // Usa axios.request para hacer la solicitud
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+
+function fMostrarTransportes() {
+    let ciudad_origen = document.querySelector("#select_co").value;
+    let ciudad_destino = document.querySelector("#select_cd").value;
+
+    let ciudad_origen_id;
+    let ciudad_origen_codigo;
+    let ciudad_destino_id;
+    let ciudad_destino_codigo;
+
+    let fecha_ida = document.querySelector("#fecha_ida").value;
+    let fecha_vuelta = document.querySelector("#fecha_vuelta").value;
+    console.log(fecha_ida, fecha_vuelta);
+    // Pedir al servidor que nos devuelva el id de la ciudad y el codigo del aeropuerto de las ciudades
+    let sql = `SELECT ciu_id, ciu_codigo FROM ciudades WHERE ciu_nombre = '${ciudad_origen}' OR ciu_nombre = '${ciudad_destino}'`;
+    let URL = "assets/php/servidor.php?peticion=EjecutarSelect";
+    URL += "&sql=" + sql;
+    fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+            ciudad_origen_id = data.datos[0].ciu_id;
+            ciudad_origen_codigo = data.datos[0].ciu_codigo;
+
+            ciudad_destino_id = data.datos[1].ciu_id;
+            ciudad_destino_codigo = data.datos[1].ciu_codigo;
+        })
+        .finally(() => {
+            console.log(buscarIDCiudad(ciudad_origen_codigo, fecha_ida));
+        });
+};
