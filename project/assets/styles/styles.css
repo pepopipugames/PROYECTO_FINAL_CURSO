@@ -195,14 +195,15 @@ section{
 
 /* MODAL SELECCIONAR ACTIVIDADES */
 
-.modal_seleccionar_actividades{
-    display: none;
+#modal_seleccionar_actividades{
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .sa_actividades{
     width: 90%;
+    height: 200px;
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
@@ -245,6 +246,10 @@ section{
     margin: 4px;
 }
 
+.sa_desc{
+    background-color: blueviolet;
+    display: flex;
+}
 
 
 

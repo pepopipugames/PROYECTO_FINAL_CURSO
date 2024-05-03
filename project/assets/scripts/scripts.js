@@ -197,6 +197,51 @@ function fGuardarHotelSeleccionado(x) {
     fMostrarModal("#modal_pregunta_actividades");
 
 }
+
+function fMostrarActividades(){
+
+    let sql = `SELECT * FROM actividades`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql
+
+    fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+  
+    console.log("ACTIVIDADES", data);
+
+
+            let html = "";
+            for (let i = 0; i < data.datos.length; i++) {
+
+                html += ` <div class="sa_actividades">`;
+                html += `   <div class="sa_fech">${data.datos[i].act_inicio}</div>`;
+                html += `   <div class="sa_datos">`;
+                html += `       <div class="sa_nombre">${data.datos[i].act_nombre}</div>`;
+                html += `       <div class="sa_extradata">`;
+                html += `           <div class="sa_duracion">${data.datos[i].act_duracion} min</div>`;
+                html += `           <div class="sa_precio">${data.datos[i].act_precio}</div>`;
+                html += `       </div>`;
+                html += `   </div>`;
+                html += `   <div class="sa_desc">${data.datos[i].act_descripcion}</div>`;
+                html += ` </div>`;
+            }
+
+            console.log(html)
+
+            document.querySelector("#modal_seleccionar_actividades").innerHTML = html;   
+
+    })
+    .finally(() => {
+
+        fMostrarModal("#modal_seleccionar_actividades");
+
+    })
+
+
+}
+
+
+
 // Muestra la modal principal de preparar viaje (donde eliges la ciudad primero)
 
 function fMostrarPrepararViaje() {
