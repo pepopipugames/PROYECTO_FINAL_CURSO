@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Importación de JQuery -->
+    <!-- Importación de Axios -->
+    <!-- DOCS: https://github.com/axios/axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- <script src="jquery-3.7.1.min.js"></script> -->
     <script src="assets/scripts/scripts.js"></script>
     <!-- Icono de la pestaña -->
@@ -21,11 +23,11 @@
     <!-- Landing Page, el resto van a ser modales por encima - Alex -->
     <header>
         <div id="div_logo" onclick="fMostrarModal('#modal_home')"><img src="assets/imagenes/Logo.PNG" alt=""></div>
-        <div id="div_login" onclick="fMostrarModal('#modal_login')"><img src="Assets/imagenes/usuario.png" alt=""></div>
-        <div id="div_menu" onclick="fMostrarModal('#modal_menu_mobile')"><img src="Assets/imagenes/menu.png" alt=""></div>
+        <div id="div_login" onclick="fMostrarModal('#modal_login')"><img src="assets/imagenes/usuario.png" alt=""></div>
+        <div id="div_menu" onclick="fMostrarModal('#modal_menu_mobile')"><img src="assets/imagenes/menu.png" alt=""></div>
     </header>
     <nav>
-        <div onclick="fMostrarModal('#modal_preparar_viaje')">Prepara tu viaje</div> 
+        <div onclick="fMostrarPrepararViaje()">Prepara tu viaje</div> 
         <div onclick="fMostrarModal('#modal_info_hoteles')">Hoteles</div>
         <div onclick="fMostrarModal('#modal_info_actividades')">Actividades</div>
     </nav>
@@ -151,6 +153,31 @@
                 
             </div>
        </div>
+               <!-- MODAL TRANSPORTES  -->
+               <div id="modal_seleccionar_transporte">
+                <div id="selector_ciudades">
+                    <div id="ciudad_origen">
+                        <label for="select_co">Elige una ciudad de origen</label>
+                        <select name="select_co" id="select_co">
+                        </select> 
+                    </div>
+                    <div id="ciudad_destino">
+                        <label for="select_cd">Elige una ciudad de destino</label>
+                        <select name="select_cd" id="select_cd">
+                        </select> 
+                    </div>
+                </div>
+                <div id="selector_fechas">
+                    <label for="ida">Selecciona la fecha de ida:</label>
+                    <input type="date" id="fecha_ida" name="fecha-ida" value="" min="" max=""/>
+    
+                    <label for="vuelta">Selecciona la fecha de vuelta:</label>
+                    <input type="date" id="fecha_vuelta" name="fecha-vuelta" value="" min="" max=""/>
+                </div>
+                <div id="contenedor_boton_buscar_transporte">
+                    <input type="button" value="Buscar transportes" onclick="fMostrarTransportes()">
+                </div>
+            </div>
 
     </section>
     <footer>&copy TUIMAK 2024 </footer>

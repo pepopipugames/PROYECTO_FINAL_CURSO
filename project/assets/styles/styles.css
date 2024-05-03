@@ -163,8 +163,6 @@ section{
     padding-bottom: 10px;
 }
 
-
-
 #pa_pregunta{
     display: flex;
     text-align: center;
@@ -189,9 +187,6 @@ section{
     align-items: center;
     justify-content: center;
 }
-
-
-
 
 /* MODAL HOME */
 
@@ -277,7 +272,6 @@ section{
     margin: 20px;
 }
 
-
 /* SEGUNDO BLOQUE */
 
 #titulo_cta_b2{
@@ -304,7 +298,6 @@ section{
     font-size: 20px;
     margin: 20px;
 }
-
 
 /* TERCER BLOQUE */
 
@@ -333,7 +326,6 @@ section{
     margin: 20px;
 }
 
-
 #div_boton_b3{
     display: flex;
     flex-wrap: wrap;
@@ -357,7 +349,6 @@ section{
     height: 30px;
     margin: 20px;
 }
-
 
 /* MODAL LOGIN */
 
@@ -569,7 +560,6 @@ section{
     margin: 20px;
 }
 
-
 /* MODAL MENU MOBILE */
 
 #modal_menu_mobile{
@@ -619,6 +609,13 @@ section{
 .ciudades > div {
     height: 100%;
 }
+
+#contenedor_boton_buscar_transporte {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* FOOTER */
 
 footer{
