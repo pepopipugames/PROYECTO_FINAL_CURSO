@@ -317,32 +317,47 @@ async function fSeleccionarFecha(ciudadDestino) {
         });
 }
 
-// Función para realizar una solicitud de autocompletado para un código IATA
-async function buscarIDCiudad(codigoIATA, fecha_ida) {
-    const options = {
-        method: 'GET',
-        url: 'https://sky-scanner3.p.rapidapi.com/flights/auto-complete',
-        params: {
-            query: codigoIATA,
-            outbounddate: fecha_ida
-        },
-        headers: {
-            'X-RapidAPI-Key': '1d4918bd48msh338061def102284p1b582ejsn97259beec7b9',
-            'X-RapidAPI-Host': 'sky-scanner3.p.rapidapi.com'
-        }
-    };
+// Realizamos una solicitud de autocompletado para un código IATA
+// Devuelve sugerencias de nombres
+async function buscarIDCiudad(codigoIATA, fecha) {
+    if (fecha != null) {
+        const options = {
+            method: 'GET',
+            url: 'https://sky-scanner3.p.rapidapi.com/flights/auto-complete',
+            params: {
+                query: codigoIATA,
+                outbounddate: fecha
+            },
+            headers: {
+                'X-RapidAPI-Key': '1d4918bd48msh338061def102284p1b582ejsn97259beec7b9',
+                'X-RapidAPI-Host': 'sky-scanner3.p.rapidapi.com'
+            }
+        };
 
-    try {
-        const response = await axios.request(options); // Usa axios.request para hacer la solicitud
-        console.log(response.data);
-    } catch (error) {
-        console.error(error);
+        try {
+            const respuesta = await axios.request(options);
+            // respuesta.data.data? chequea si respuesta.data.data existe
+            // find() busca dentro del array si navigation y entityId existen
+            // Lo que hace el metodo find es devolver el primer elemento de un array que cumpla con una funcion de prueba
+            // La funcion de prueba es item => item.navigation?.entityId (Si navigation y entityId existen)
+            // ?.navigation.entityId; Accede a los datos. La interrogacion hace que devuelve undefined si no ha encontrado nada
+            // Usamos find porque siempre vamos a querer devolver el primer resultado de las sugerencias ya que es el correcto.
+            // Por ejemplo, el codigo IATA MAD, devuelve Madrid en la primera posicion pero Madeira en la 7. El codigo de IATA de Madeira no es MAD.
+            // Son las 5am. Me ha llevado 3 horas la funcion esta :S
+            const entityId = respuesta.data.data?.find(item => item.navigation?.entityId)?.navigation.entityId;
+            if (entityId) {
+                return entityId;
+            } else {
+                console.error("No entityId found in the response data.");
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
     }
 }
 
 
-
-function fMostrarTransportes() {
+async function fMostrarTransportes() {
     let ciudad_origen = document.querySelector("#select_co").value;
     let ciudad_destino = document.querySelector("#select_cd").value;
 
@@ -353,6 +368,12 @@ function fMostrarTransportes() {
 
     let fecha_ida = document.querySelector("#fecha_ida").value;
     let fecha_vuelta = document.querySelector("#fecha_vuelta").value;
+
+    let c_org_vuelo_entidad_id;
+    let c_dest_vuelo_entidad_id;
+    let c_org_hotel_entidad_id;
+    let c_dest_hotel_entidad_id;
+
     console.log(fecha_ida, fecha_vuelta);
     // Pedir al servidor que nos devuelva el id de la ciudad y el codigo del aeropuerto de las ciudades
     let sql = `SELECT ciu_id, ciu_codigo FROM ciudades WHERE ciu_nombre = '${ciudad_origen}' OR ciu_nombre = '${ciudad_destino}'`;
@@ -360,14 +381,18 @@ function fMostrarTransportes() {
     URL += "&sql=" + sql;
     fetch(URL)
         .then((response) => response.json())
-        .then((data) => {
+        .then(async (data) => {
             ciudad_origen_id = data.datos[0].ciu_id;
             ciudad_origen_codigo = data.datos[0].ciu_codigo;
 
             ciudad_destino_id = data.datos[1].ciu_id;
             ciudad_destino_codigo = data.datos[1].ciu_codigo;
+
+            try {
+                c_org_vuelo_entidad_id = await buscarIDCiudad(ciudad_origen_codigo, fecha_ida);
+                c_dest_vuelo_entidad_id = await buscarIDCiudad(ciudad_destino_codigo, fecha_vuelta);
+            } catch (error) {
+                console.error("Error al buscar el ID de la ciudad:", error);
+            }
         })
-        .finally(() => {
-            console.log(buscarIDCiudad(ciudad_origen_codigo, fecha_ida));
-        });
-};
+};  
