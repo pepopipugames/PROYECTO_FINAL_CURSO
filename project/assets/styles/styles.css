@@ -68,6 +68,10 @@ header{
     width: 35px;
 
 }
+
+#div_perfil_usuario {
+    display: none;
+}
 /* NAV */
 
 nav{
