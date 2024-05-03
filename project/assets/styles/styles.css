@@ -192,6 +192,62 @@ section{
     justify-content: center;
 }
 
+
+/* MODAL SELECCIONAR ACTIVIDADES */
+
+.modal_seleccionar_actividades{
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sa_actividades{
+    width: 90%;
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.sa_actividades > div {
+    width: 100%;
+    padding: 4px;
+}
+
+.sa_fech{
+    background-color: rgb(152, 218, 132);
+    font-size: 12px;
+}
+
+.sa_datos{
+    display: flex;
+    justify-content: space-between
+
+}
+.sa_datos > div{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+    
+}
+
+.sa_nombre{
+    font-size: 30px;
+    justify-content: left;
+
+}
+
+.sa_extradata{
+    padding: 3px;
+}
+
+.sa_extradata > div{
+    margin: 4px;
+}
+
+
+
+
 /* MODAL HOME */
 
 #modal_home{
