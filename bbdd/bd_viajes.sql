@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-05-2024 a las 17:45:02
+-- Tiempo de generación: 04-05-2024 a las 20:59:48
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -257,6 +257,44 @@ CREATE TABLE `hoteles` (
   `hot_precio_noche` decimal(10,2) NOT NULL,
   `hot_ciu_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `hoteles`
+--
+
+INSERT INTO `hoteles` (`hot_id`, `hot_nombre`, `hot_logo`, `hot_precio_noche`, `hot_ciu_id`) VALUES
+(2, 'Gran Hotel Madrid', 'gran_hotel_madrid.jpg', 150.00, 1),
+(3, 'Hotel Real Madrid', 'hotel_real_madrid.jpg', 120.00, 1),
+(4, 'Hotel Madrid Central', 'hotel_madrid_central.jpg', 90.00, 1),
+(5, 'Hotel del Sol', 'hotel_del_sol.jpg', 110.00, 1),
+(6, 'Parisian Palace', 'parisian_palace.jpg', 180.00, 2),
+(7, 'Eiffel Tower Hotel', 'eiffel_tower_hotel.jpg', 130.00, 2),
+(8, 'Montmartre Mansion', 'montmartre_mansion.jpg', 160.00, 2),
+(9, 'Rive Gauche Resort', 'rive_gauche_resort.jpg', 140.00, 2),
+(10, 'Santo Domingo Sunset', 'santo_domingo_sunset.jpg', 100.00, 4),
+(11, 'Dominican Dream Hotel', 'dominican_dream_hotel.jpg', 120.00, 4),
+(12, 'Caribbean Comfort Inn', 'caribbean_comfort_inn.jpg', 85.00, 4),
+(13, 'Tropical Terrace Resort', 'tropical_terrace_resort.jpg', 95.00, 4),
+(14, 'Moscow Marriott', 'moscow_marriott.jpg', 150.00, 5),
+(15, 'Red Square Hotel', 'red_square_hotel.jpg', 110.00, 5),
+(16, 'Kremlin Castle Inn', 'kremlin_castle_inn.jpg', 130.00, 5),
+(17, 'Arbat Avenue Apartments', 'arbat_avenue_apartments.jpg', 120.00, 5),
+(18, 'Kabul Oasis Retreat', 'kabul_oasis_retreat.jpg', 70.00, 19),
+(19, 'Afghan Adventure Lodge', 'afghan_adventure_lodge.jpg', 85.00, 19),
+(20, 'Silk Road Hotel', 'silk_road_hotel.jpg', 75.00, 19),
+(21, 'Mountain View Inn', 'mountain_view_inn.jpg', 90.00, 19),
+(22, 'Dodoma Desert Lodge', 'dodoma_desert_lodge.jpg', 80.00, 20),
+(23, 'Tanzanian Serenity Resort', 'tanzanian_serenity_resort.jpg', 95.00, 20),
+(24, 'Savannah Sunset Hotel', 'savannah_sunset_hotel.jpg', 85.00, 20),
+(25, 'Victoria View Inn', 'victoria_view_inn.jpg', 100.00, 20),
+(26, 'Bogotá Boutique Hotel', 'bogota_boutique_hotel.jpg', 90.00, 21),
+(27, 'Andean Adventure Lodge', 'andean_adventure_lodge.jpg', 105.00, 21),
+(28, 'Emerald City Hotel', 'emerald_city_hotel.jpg', 100.00, 21),
+(29, 'Amazonian Eco Resort', 'amazonian_eco_resort.jpg', 115.00, 21),
+(30, 'Buenos Aires Grand', 'buenos_aires_grand.jpg', 100.00, 22),
+(31, 'Tango Towers Hotel', 'tango_towers_hotel.jpg', 115.00, 22),
+(32, 'Pampas Palace', 'pampas_palace.jpg', 110.00, 22),
+(33, 'Evitas Legacy Inn', 'evitas_legacy_inn.jpg', 125.00, 22);
 
 -- --------------------------------------------------------
 
@@ -528,7 +566,7 @@ ALTER TABLE `historial_user`
 -- AUTO_INCREMENT de la tabla `hoteles`
 --
 ALTER TABLE `hoteles`
-  MODIFY `hot_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `hot_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
