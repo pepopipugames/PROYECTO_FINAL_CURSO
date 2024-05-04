@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 02, 2024 at 09:06 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 04-05-2024 a las 17:07:50
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,12 +18,12 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tuimak`
+-- Base de datos: `bd_viajes`
 --
 
 DELIMITER $$
 --
--- Procedures
+-- Procedimientos
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ciudades_select_all` ()   SELECT * FROM ciudades$$
 
@@ -70,7 +70,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `actividades`
+-- Estructura de tabla para la tabla `actividades`
 --
 
 CREATE TABLE `actividades` (
@@ -82,10 +82,34 @@ CREATE TABLE `actividades` (
   `act_precio` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `actividades`
+--
+
+INSERT INTO `actividades` (`act_id`, `act_nombre`, `act_descripcion`, `act_inicio`, `act_duracion`, `act_precio`) VALUES
+(1, 'Montar en Barco', 'Disfruta de un emocionante paseo en barco por el mar', '09:00:00', 60, 50.00),
+(2, 'Nadar con Delfines', 'Experimenta la magia de nadar junto a estos inteligentes mamíferos marinos', '10:00:00', 90, 70.00),
+(3, 'Senderismo en la Montaña', 'Explora la naturaleza y disfruta de impresionantes vistas mientras caminas por la montaña', '11:00:00', 120, 90.00),
+(4, 'Clases de Surf', 'Aprende a dominar las olas con nuestras clases de surf', '12:00:00', 45, 40.00),
+(5, 'Paseo en Bicicleta', 'Recorre hermosos paisajes en bicicleta y disfruta del aire libre', '13:00:00', 75, 60.00),
+(6, 'Sesión de Yoga al Amanecer', 'Comienza el día con una sesión relajante de yoga en la playa', '14:00:00', 30, 30.00),
+(7, 'Excursión en Kayak', 'Descubre cuevas ocultas y calas remotas en una emocionante excursión en kayak', '15:00:00', 90, 70.00),
+(8, 'Tour Gastronómico', 'Explora la deliciosa cocina local en un tour gastronómico por la ciudad', '16:00:00', 60, 50.00),
+(9, 'Visita a Ruinas Antiguas', 'Sumérgete en la historia explorando las antiguas ruinas de la civilización', '17:00:00', 120, 90.00),
+(10, 'Safari Fotográfico', 'Embárcate en un emocionante safari fotográfico y captura la vida salvaje en su hábitat natural', '18:00:00', 45, 40.00),
+(11, 'Cata de Vinos', 'Degusta una variedad de exquisitos vinos locales en una experiencia de cata única', '19:00:00', 75, 60.00),
+(12, 'Visita a Mercado Artesanal', 'Descubre artesanías únicas y productos locales en un pintoresco mercado', '20:00:00', 30, 30.00),
+(13, 'Noche de Flamenco', 'Disfruta de una noche llena de pasión y ritmo con un espectáculo de flamenco', '21:00:00', 90, 70.00),
+(14, 'Tour en Helicóptero', 'Contempla vistas panorámicas impresionantes desde las alturas en un tour en helicóptero', '22:00:00', 60, 50.00),
+(15, 'Observación de Estrellas', 'Maravíllate con la belleza del cielo nocturno en una sesión de observación de estrellas', '23:00:00', 120, 80.00),
+(16, 'Curso de Cocina Local', 'Aprende a preparar platos tradicionales con ingredientes locales en un divertido curso de cocina', '00:00:00', 90, 65.00),
+(17, 'Visita a Parque Nacional', 'Explora la diversa flora y fauna en un impresionante parque nacional', '01:00:00', 180, 110.00),
+(18, 'Paseo en Globo Aerostático', 'Disfruta de una experiencia única flotando en el cielo en un paseo en globo aerostático', '02:00:00', 120, 150.00);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ciudades`
+-- Estructura de tabla para la tabla `ciudades`
 --
 
 CREATE TABLE `ciudades` (
@@ -97,7 +121,7 @@ CREATE TABLE `ciudades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `ciudades`
+-- Volcado de datos para la tabla `ciudades`
 --
 
 INSERT INTO `ciudades` (`ciu_id`, `ciu_nombre`, `ciu_codigo`, `ciu_foto`, `ciu_pais_id`) VALUES
@@ -126,7 +150,7 @@ INSERT INTO `ciudades` (`ciu_id`, `ciu_nombre`, `ciu_codigo`, `ciu_foto`, `ciu_p
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ciudades_actividades`
+-- Estructura de tabla para la tabla `ciudades_actividades`
 --
 
 CREATE TABLE `ciudades_actividades` (
@@ -137,7 +161,7 @@ CREATE TABLE `ciudades_actividades` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `historial_user`
+-- Estructura de tabla para la tabla `historial_user`
 --
 
 CREATE TABLE `historial_user` (
@@ -163,7 +187,7 @@ CREATE TABLE `historial_user` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hoteles`
+-- Estructura de tabla para la tabla `hoteles`
 --
 
 CREATE TABLE `hoteles` (
@@ -177,7 +201,7 @@ CREATE TABLE `hoteles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paises`
+-- Estructura de tabla para la tabla `paises`
 --
 
 CREATE TABLE `paises` (
@@ -186,7 +210,7 @@ CREATE TABLE `paises` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `paises`
+-- Volcado de datos para la tabla `paises`
 --
 
 INSERT INTO `paises` (`pais_id`, `pais_nombre`) VALUES
@@ -259,7 +283,7 @@ INSERT INTO `paises` (`pais_id`, `pais_nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservas_hotel_viajes`
+-- Estructura de tabla para la tabla `reservas_hotel_viajes`
 --
 
 CREATE TABLE `reservas_hotel_viajes` (
@@ -275,7 +299,7 @@ CREATE TABLE `reservas_hotel_viajes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reserva_act`
+-- Estructura de tabla para la tabla `reserva_act`
 --
 
 CREATE TABLE `reserva_act` (
@@ -287,7 +311,7 @@ CREATE TABLE `reserva_act` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -302,7 +326,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Triggers `usuarios`
+-- Disparadores `usuarios`
 --
 DELIMITER $$
 CREATE TRIGGER `AfterInsert` AFTER INSERT ON `usuarios` FOR EACH ROW INSERT INTO historial_user VALUES
@@ -330,7 +354,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `viajes`
+-- Estructura de tabla para la tabla `viajes`
 --
 
 CREATE TABLE `viajes` (
@@ -344,17 +368,17 @@ CREATE TABLE `viajes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `actividades`
+-- Indices de la tabla `actividades`
 --
 ALTER TABLE `actividades`
   ADD PRIMARY KEY (`act_id`);
 
 --
--- Indexes for table `ciudades`
+-- Indices de la tabla `ciudades`
 --
 ALTER TABLE `ciudades`
   ADD PRIMARY KEY (`ciu_id`),
@@ -362,34 +386,34 @@ ALTER TABLE `ciudades`
   ADD KEY `r-ciudad-pais` (`ciu_pais_id`);
 
 --
--- Indexes for table `ciudades_actividades`
+-- Indices de la tabla `ciudades_actividades`
 --
 ALTER TABLE `ciudades_actividades`
   ADD PRIMARY KEY (`ca_act_id`,`ca_ciu_id`),
   ADD KEY `r-ca-ciudades` (`ca_ciu_id`);
 
 --
--- Indexes for table `historial_user`
+-- Indices de la tabla `historial_user`
 --
 ALTER TABLE `historial_user`
   ADD PRIMARY KEY (`hu_id`),
   ADD KEY `r-hu-users` (`hu_usu_id`);
 
 --
--- Indexes for table `hoteles`
+-- Indices de la tabla `hoteles`
 --
 ALTER TABLE `hoteles`
   ADD PRIMARY KEY (`hot_id`),
   ADD KEY `r-hoteles-ciudades` (`hot_ciu_id`);
 
 --
--- Indexes for table `paises`
+-- Indices de la tabla `paises`
 --
 ALTER TABLE `paises`
   ADD PRIMARY KEY (`pais_id`);
 
 --
--- Indexes for table `reservas_hotel_viajes`
+-- Indices de la tabla `reservas_hotel_viajes`
 --
 ALTER TABLE `reservas_hotel_viajes`
   ADD PRIMARY KEY (`rhv_id`),
@@ -398,20 +422,20 @@ ALTER TABLE `reservas_hotel_viajes`
   ADD KEY `r-rhv-viajes` (`rhv_viaje_id`);
 
 --
--- Indexes for table `reserva_act`
+-- Indices de la tabla `reserva_act`
 --
 ALTER TABLE `reserva_act`
   ADD PRIMARY KEY (`ra_act_id`,`ra_usu_id`),
   ADD KEY `r-ra-usuarios` (`ra_usu_id`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`usu_id`);
 
 --
--- Indexes for table `viajes`
+-- Indices de la tabla `viajes`
 --
 ALTER TABLE `viajes`
   ADD PRIMARY KEY (`viaje_id`),
@@ -419,88 +443,88 @@ ALTER TABLE `viajes`
   ADD KEY `r-ciudad-viaje-destino` (`viaje_ciu_destino`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `actividades`
+-- AUTO_INCREMENT de la tabla `actividades`
 --
 ALTER TABLE `actividades`
-  MODIFY `act_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `act_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `ciudades`
+-- AUTO_INCREMENT de la tabla `ciudades`
 --
 ALTER TABLE `ciudades`
   MODIFY `ciu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `historial_user`
+-- AUTO_INCREMENT de la tabla `historial_user`
 --
 ALTER TABLE `historial_user`
   MODIFY `hu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `hoteles`
+-- AUTO_INCREMENT de la tabla `hoteles`
 --
 ALTER TABLE `hoteles`
   MODIFY `hot_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `paises`
+-- AUTO_INCREMENT de la tabla `paises`
 --
 ALTER TABLE `paises`
   MODIFY `pais_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
--- AUTO_INCREMENT for table `reservas_hotel_viajes`
+-- AUTO_INCREMENT de la tabla `reservas_hotel_viajes`
 --
 ALTER TABLE `reservas_hotel_viajes`
   MODIFY `rhv_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `viajes`
+-- AUTO_INCREMENT de la tabla `viajes`
 --
 ALTER TABLE `viajes`
   MODIFY `viaje_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `ciudades`
+-- Filtros para la tabla `ciudades`
 --
 ALTER TABLE `ciudades`
   ADD CONSTRAINT `r-pais-ciudad` FOREIGN KEY (`ciu_pais_id`) REFERENCES `paises` (`pais_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `ciudades_actividades`
+-- Filtros para la tabla `ciudades_actividades`
 --
 ALTER TABLE `ciudades_actividades`
   ADD CONSTRAINT `r-ca-actividades` FOREIGN KEY (`ca_act_id`) REFERENCES `actividades` (`act_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `r-ca-ciudades` FOREIGN KEY (`ca_ciu_id`) REFERENCES `ciudades` (`ciu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `historial_user`
+-- Filtros para la tabla `historial_user`
 --
 ALTER TABLE `historial_user`
   ADD CONSTRAINT `r-hu-users` FOREIGN KEY (`hu_usu_id`) REFERENCES `usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `hoteles`
+-- Filtros para la tabla `hoteles`
 --
 ALTER TABLE `hoteles`
   ADD CONSTRAINT `r-ciudades-hoteles` FOREIGN KEY (`hot_ciu_id`) REFERENCES `ciudades` (`ciu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `reservas_hotel_viajes`
+-- Filtros para la tabla `reservas_hotel_viajes`
 --
 ALTER TABLE `reservas_hotel_viajes`
   ADD CONSTRAINT `r-rhv-hoteles` FOREIGN KEY (`rhv_hot_id`) REFERENCES `hoteles` (`hot_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
@@ -508,14 +532,14 @@ ALTER TABLE `reservas_hotel_viajes`
   ADD CONSTRAINT `r-rhv-viajes` FOREIGN KEY (`rhv_viaje_id`) REFERENCES `viajes` (`viaje_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `reserva_act`
+-- Filtros para la tabla `reserva_act`
 --
 ALTER TABLE `reserva_act`
   ADD CONSTRAINT `r-ra-actividades` FOREIGN KEY (`ra_act_id`) REFERENCES `actividades` (`act_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `r-ra-usuarios` FOREIGN KEY (`ra_usu_id`) REFERENCES `usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `viajes`
+-- Filtros para la tabla `viajes`
 --
 ALTER TABLE `viajes`
   ADD CONSTRAINT `r-ciudad-viaje-destino` FOREIGN KEY (`viaje_ciu_destino`) REFERENCES `ciudades` (`ciu_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
