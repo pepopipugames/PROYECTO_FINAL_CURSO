@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-05-2024 a las 17:07:50
+-- Tiempo de generación: 04-05-2024 a las 17:45:02
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -157,6 +157,66 @@ CREATE TABLE `ciudades_actividades` (
   `ca_act_id` int(11) NOT NULL,
   `ca_ciu_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `ciudades_actividades`
+--
+
+INSERT INTO `ciudades_actividades` (`ca_act_id`, `ca_ciu_id`) VALUES
+(1, 1),
+(1, 6),
+(1, 11),
+(1, 16),
+(2, 1),
+(2, 6),
+(2, 11),
+(2, 16),
+(3, 1),
+(3, 6),
+(3, 11),
+(3, 16),
+(4, 1),
+(4, 6),
+(4, 11),
+(4, 16),
+(5, 2),
+(5, 7),
+(5, 12),
+(6, 2),
+(6, 7),
+(6, 12),
+(7, 2),
+(7, 7),
+(7, 12),
+(8, 2),
+(8, 7),
+(8, 12),
+(9, 8),
+(9, 13),
+(10, 8),
+(10, 13),
+(11, 8),
+(11, 13),
+(12, 8),
+(12, 13),
+(13, 4),
+(13, 9),
+(13, 14),
+(14, 4),
+(14, 9),
+(14, 14),
+(15, 4),
+(15, 9),
+(15, 14),
+(16, 4),
+(16, 9),
+(16, 14),
+(17, 5),
+(17, 10),
+(17, 15),
+(18, 5),
+(18, 10),
+(18, 15);
 
 -- --------------------------------------------------------
 
