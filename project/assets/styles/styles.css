@@ -216,8 +216,10 @@ section{
 }
 
 .sa_fech{
-    background-color: rgb(152, 218, 132);
-    font-size: 12px;
+    color: green;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0;
 }
 
 .sa_datos{
@@ -247,7 +249,6 @@ section{
 }
 
 .sa_desc{
-    background-color: blueviolet;
     display: flex;
 }
 

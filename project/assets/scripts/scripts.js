@@ -3,6 +3,7 @@
 let id_usuario_logueado = 0; // ID DEL USUARIO CUANDO SE REGISTRA
 let id_hotel_seleccionado; // ID DEL HOTEL SELECCIONADO
 let datos_usuario = null; // DATOS DEL USUARIO QUE HAYA HECHO LOG IN
+let ciudad_seleccionada;
 
 function fMostrarFormularios(nombre_formulario_con_almohadilla) {
     //Guardamos todos los formularios en una lista de formularios con el querySelectorAll
@@ -156,6 +157,8 @@ function fMostrarHotelesCiudad(id_ciudad) {
     let sql = `SELECT * FROM hoteles where hot_ciu_id = ${id_ciudad}`;
     const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
 
+    ciudad_seleccionada = id_ciudad;
+
     fetch(URL)
         .then((response) => response.json())
         .then((data) => {
@@ -239,6 +242,60 @@ function fMostrarActividades(){
 
 
 }
+
+
+
+// SELECT DISTINCT  * from actividades as a, ciudades as c, ciudades_actividades as ca 
+// WHERE ca.ca_ciu_id = c.ciu_id AND ca.ca_act_id = a.act_id AND c.ciu_id = 1;
+
+
+function fMostrarActividadesCiudad(){
+
+    id_ciudad = ciudad_seleccionada;
+
+    let sql = `SELECT DISTINCT  * from actividades as a, ciudades as c, ciudades_actividades as ca 
+    WHERE ca.ca_ciu_id = c.ciu_id AND ca.ca_act_id = a.act_id AND c.ciu_id = ${id_ciudad};`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql
+
+    fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+  
+    console.log("ACTIVIDADES", data);
+
+
+            let html = "";
+            for (let i = 0; i < data.datos.length; i++) {
+
+                html += ` <div class="sa_actividades">`;
+                html += `   <div class="sa_fech">${data.datos[i].act_inicio}</div>`;
+                html += `   <div class="sa_datos">`;
+                html += `       <div class="sa_nombre">${data.datos[i].act_nombre}</div>`;
+                html += `       <div class="sa_extradata">`;
+                html += `           <div class="sa_duracion">${data.datos[i].act_duracion} min</div>`;
+                html += `           <div class="sa_precio">${data.datos[i].act_precio}</div>`;
+                html += `       </div>`;
+                html += `   </div>`;
+                html += `   <div class="sa_desc">${data.datos[i].act_descripcion}</div>`;
+                html += ` </div>`;
+            }
+
+            console.log(html)
+
+            document.querySelector("#modal_seleccionar_actividades").innerHTML = html;   
+
+    })
+    .finally(() => {
+
+        fMostrarModal("#modal_seleccionar_actividades");
+
+    })
+
+
+}
+
+
+
 
 
 
