@@ -4,6 +4,7 @@ let id_usuario_logueado = 0; // ID DEL USUARIO CUANDO SE REGISTRA
 let id_hotel_seleccionado; // ID DEL HOTEL SELECCIONADO
 let datos_usuario = null; // DATOS DEL USUARIO QUE HAYA HECHO LOG IN
 let ciudad_seleccionada;
+let id_actividad_seleccionada;
 
 function fMostrarFormularios(nombre_formulario_con_almohadilla) {
     //Guardamos todos los formularios en una lista de formularios con el querySelectorAll
@@ -267,7 +268,7 @@ function fMostrarActividadesCiudad(){
             let html = "";
             for (let i = 0; i < data.datos.length; i++) {
 
-                html += ` <div class="sa_actividades">`;
+                html += ` <div class="sa_actividades" onclick="fGuardarActividadReservada('${data.datos[i].act_id}')">`;
                 html += `   <div class="sa_fech">${data.datos[i].act_inicio}</div>`;
                 html += `   <div class="sa_datos">`;
                 html += `       <div class="sa_nombre">${data.datos[i].act_nombre}</div>`;
@@ -291,6 +292,13 @@ function fMostrarActividadesCiudad(){
 
     })
 
+
+}
+
+function fGuardarActividadReservada(id_actividad){
+
+    id_actividad_seleccionada = id_actividad;
+    console.log(id_actividad_seleccionada);
 
 }
 
