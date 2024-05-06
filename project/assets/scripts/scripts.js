@@ -149,6 +149,9 @@ function fLogin() {
 
             fMostrarModal("#modal_perfil_usuario");
 
+            //MOSTRAMOS SUS DATOS
+            fMostrarPerfilUsuario();
+
         })
 
 }
@@ -611,5 +614,52 @@ function fMostrarPerfilUsuarioAmpliado() {
     document.querySelector("#telefono_user_ampl").innerHTML = "Telefono: " + datos_usuario.usu_telefono;
     document.querySelector("#nacimiento_user_ampl").innerHTML = "Fecha de nacimiento: " + datos_usuario.usu_fnac;
 
+}
+
+function fModificarDatos() {
+
+    // LE PASAMOS LAS VARIABLES DE TODOS LOS INPUTS DEL FORMULARIO DE REGISTRO
+
+    let nombre = document.querySelector("#nombre_modificar_datos").value;
+    let apellidos = document.querySelector("#apellidos_modificar_datos").value;
+    let alias = document.querySelector("#alias_modificar_datos").value;
+    let password = document.querySelector("#password_modificar_datos").value;
+    let confirmar_password = document.querySelector("#password_modificar_datos_r").value;
+    let documento = document.querySelector("#nif_modificar_datos").value;
+    let telefono = document.querySelector("#telefono_modificar_datos").value;
+    let fnac = document.querySelector("#fnac_modificar_datos").value;
+
+    //CONTROL DE ERRORES PARA LAS CONTRASEÑAS
+
+    if (password != confirmar_password) {
+        document.querySelector("#div_error_modificar_datos").style.display = 'flex';
+        document.querySelector("#div_error_modificar_datos").innerHTML = 'ERROR. Las contraseñas no coinciden.';
+        return;
+    }
+
+    // LLAMAMOS A LA PROCEDURE DE MODIFICAR DATOS
+
+    let sql = `call usuarios_update('${nombre}','${apellidos}','${alias}','${password}','${documento}','${telefono}','${fnac}',${id_usuario_logueado})`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarUpdateDelete&sql=" + sql;
+
+    fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+        })
+        .finally(() => {
+
+            // VALORES EN BLANCO PARA EL SIGUIENTE FORMULARIO DE MODIFICACION DE DATOS
+            document.querySelector("#nombre_modificar_datos").value = "";
+            document.querySelector("#apellidos_modificar_datos").value = "";
+            document.querySelector("#alias_modificar_datos").value = "";
+            document.querySelector("#password_modificar_datos").value = "";
+            document.querySelector("#password_modificar_datos_r").value = "";
+            document.querySelector("#nif_modificar_datos").value = "";
+            document.querySelector("#telefono_modificar_datos").value = "";
+            document.querySelector("#fnac_modificar_datos").value = "";
+
+            fMostrarModal();
+
+        })
 }
 
