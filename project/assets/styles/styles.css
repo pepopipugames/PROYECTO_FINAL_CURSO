@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
 }
 
 body{
@@ -69,7 +70,11 @@ header{
 
 }
 
-#div_perfil_usuario {
+#modal_perfil_usuario {
+    display: none;
+}
+
+#modal_perfil_usuario_ampliado{
     display: none;
 }
 /* NAV */
@@ -196,7 +201,7 @@ section{
 /* MODAL SELECCIONAR ACTIVIDADES */
 
 #modal_seleccionar_actividades{
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -252,8 +257,77 @@ section{
     display: flex;
 }
 
+.boton_seleccionar_hot_act {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border: 1px solid black;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 5px 5px 0px -1px rgba(0,0,0,1);
+    margin-bottom: 10px;
+}
 
+.boton_seleccionar_hot_act:hover {
+    box-shadow: 10px 10px 0px -1px rgba(0,0,0,1);
+}
 
+/* MODAL INFO HOTELES */
+
+#modal_info_hoteles {
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.hotel {
+    width: 450px;
+    height: 250px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hot_logo{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hot_logo > img {
+    width: 80%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.hot_ciudad {
+    margin-top: 10px;
+    margin-left: 45px;
+    font-weight: 500;
+    width: 100%;
+}
+
+.hot_nombre {
+    margin-top: 10px;
+    width: 100%;
+    margin-left: 45px;
+    color: rgb(46, 46, 46);
+}
+
+.hot_precio{
+    width: 100%;
+    margin-left: 45px;
+    color: rgb(46, 46, 46);
+    font-weight: 500;
+}
 /* MODAL HOME */
 
 #modal_home{
@@ -657,6 +731,7 @@ section{
 #modal_preparar_viaje {
     width: 100%;
     height: 100%;
+    display: none;
 }
 #pv_ciudades {
     width: 100%;
@@ -682,11 +757,15 @@ section{
     align-items: center;
 }
 
+#modal_seleccionar_transporte {
+    display: none;
+}
+
 /* TRANSPORTES ENCONTRADOS */
 #modal_transportes_encontrados {
     width: 100%;
     height: 100%;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }
