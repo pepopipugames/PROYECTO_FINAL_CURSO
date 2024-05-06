@@ -116,28 +116,28 @@ function fLogin() {
 
             datos_usuario = data.datos[0];
 
-                // En el caso de que este logueado
+            // En el caso de que este logueado
 
-    if (data.datos.length > 0) {
+            if (data.datos.length > 0) {
 
-        // Ocultamos el login 
-        document.querySelector("#modal_login").style.display = 'none';
+                // Ocultamos el login 
+                document.querySelector("#modal_login").style.display = 'none';
 
-        // Mostramos en el nav el div que da opcion al usuario a acceder a sus datos personales
+                // Mostramos en el nav el div que da opcion al usuario a acceder a sus datos personales
 
-        document.querySelector("#div_perfil_usuario").style.display = "block";
+                document.querySelector("#div_perfil_usuario").style.display = "block";
 
-        // Guardamos la variable del ID del usuario
-        id_usuario_logueado = data.datos[0].usu_id;
-        datos_usuario = data.datos[0];
+                // Guardamos la variable del ID del usuario
+                id_usuario_logueado = data.datos[0].usu_id;
+                datos_usuario = data.datos[0];
 
 
-    } else {
+            } else {
 
-        // En el caso de que no este logueado
-        document.querySelector("#div_error_login").style.display = 'flex';
-        document.querySelector("#div_error_login").innerHTML = "Username o contraseña incorrecta. Acceso denegado."
-    }
+                // En el caso de que no este logueado
+                document.querySelector("#div_error_login").style.display = 'flex';
+                document.querySelector("#div_error_login").innerHTML = "Username o contraseña incorrecta. Acceso denegado."
+            }
 
         })
 
@@ -202,7 +202,7 @@ function fGuardarHotelSeleccionado(x) {
 
 }
 
-function fMostrarActividades(){
+function fMostrarActividades() {
 
     let sql = `SELECT * FROM actividades`;
     const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql
@@ -210,8 +210,8 @@ function fMostrarActividades(){
     fetch(URL)
         .then((response) => response.json())
         .then((data) => {
-  
-    console.log("ACTIVIDADES", data);
+
+            console.log("ACTIVIDADES", data);
 
 
             let html = "";
@@ -229,28 +229,49 @@ function fMostrarActividades(){
                 html += `   <div class="sa_desc">${data.datos[i].act_descripcion}</div>`;
                 html += ` </div>`;
             }
-
+            html += `<div class="boton_seleccionar_hot_act" onclick="fMostrarModal('#modal_login')">
+                    <div>Haz login para preparar tu viaje</div>
+                    </div>`
             console.log(html)
 
-            document.querySelector("#modal_seleccionar_actividades").innerHTML = html;   
+            document.querySelector("#modal_seleccionar_actividades").innerHTML += html;
 
-    })
-    .finally(() => {
+        })
+        .finally(() => {
 
-        fMostrarModal("#modal_seleccionar_actividades");
+            fMostrarModal("#modal_seleccionar_actividades");
 
-    })
-
-
+        })
 }
 
+function fMostrarHoteles() {
+    let sql = "SELECT ciudades.ciu_nombre, hoteles.hot_nombre, hoteles.hot_logo, hoteles.hot_precio_noche FROM hoteles, ciudades WHERE hoteles.hot_ciu_id = ciudades.ciu_id ORDER BY rand() LIMIT 6;"
+    let URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql
 
+    fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+            let html = "";
+            data.datos.forEach(item => {
+                html += `<div class="hotel">`;
+                html += `   <div class="hot_logo"> <img src="assets/imagenes/hoteles/${item.hot_logo}"></div>`
+                html += `   <div class="hot_ciudad"><div>${item.ciu_nombre}</div></div>`
+                html += `   <div class="hot_nombre"><div>${item.hot_nombre}</div></div>`
+                html += `   <div class="hot_precio"><div>Noche: ${item.hot_precio_noche}€</div></div>`
+                html += `</div>`;
+            });
+            document.querySelector("#modal_info_hoteles").innerHTML = html;
+        })
+        .finally(() => {
+            fMostrarModal("#modal_info_hoteles");
+        })
+}
 
 // SELECT DISTINCT  * from actividades as a, ciudades as c, ciudades_actividades as ca 
 // WHERE ca.ca_ciu_id = c.ciu_id AND ca.ca_act_id = a.act_id AND c.ciu_id = 1;
 
 
-function fMostrarActividadesCiudad(){
+function fMostrarActividadesCiudad() {
 
     id_ciudad = ciudad_seleccionada;
 
@@ -261,8 +282,8 @@ function fMostrarActividadesCiudad(){
     fetch(URL)
         .then((response) => response.json())
         .then((data) => {
-  
-    console.log("ACTIVIDADES", data);
+
+            console.log("ACTIVIDADES", data);
 
 
             let html = "";
@@ -283,28 +304,24 @@ function fMostrarActividadesCiudad(){
 
             console.log(html)
 
-            document.querySelector("#modal_seleccionar_actividades").innerHTML = html;   
+            document.querySelector("#modal_seleccionar_actividades").innerHTML = html;
 
-    })
-    .finally(() => {
+        })
+        .finally(() => {
 
-        fMostrarModal("#modal_seleccionar_actividades");
+            fMostrarModal("#modal_seleccionar_actividades");
 
-    })
+        })
 
 
 }
 
-function fGuardarActividadReservada(id_actividad){
+function fGuardarActividadReservada(id_actividad) {
 
     id_actividad_seleccionada = id_actividad;
     console.log(id_actividad_seleccionada);
 
 }
-
-
-
-
 
 
 // Muestra la modal principal de preparar viaje (donde eliges la ciudad primero)
@@ -509,7 +526,7 @@ function fEncontrarViajes(ciu_origen, ciu_destino, fecha_ida, fecha_vuelta) {
                     })
             }
         })
-        .finally (() => {
+        .finally(() => {
             fMostrarHotelesCiudad(ciu_destino);
         })
 }
@@ -574,24 +591,25 @@ function fMostrarPerfilUsuario() {
     //GENERAR LOS DATOS PRINCIPALES DEL USUARIO
 
     document.querySelector("#alias_user").innerHTML = "Tu nombre de usuario: " + datos_usuario.usu_alias;
-    document.querySelector("#nombre_user").innerHTML = "Nombre completo: " + datos_usuario.usu_nombre + " " + datos_usuario.usu_apellido ;
+    document.querySelector("#nombre_user").innerHTML = "Nombre completo: " + datos_usuario.usu_nombre + " " + datos_usuario.usu_apellido;
     document.querySelector("#password_user").innerHTML = "Tu contraseña: ************";
 }
 
 function fMostrarPerfilUsuarioAmpliado() {
 
-     //MOSTRAR EL MODAL NECESARIO
+    //MOSTRAR EL MODAL NECESARIO
 
-     fMostrarModal("#modal_perfil_usuario_ampliado");
+    fMostrarModal("#modal_perfil_usuario_ampliado");
 
-     //GENERAR LOS DATOS PRINCIPALES DEL USUARIO
- 
-     document.querySelector("#alias_user_ampl").innerHTML = "Tu nombre de usuario: " + datos_usuario.usu_alias;
-     document.querySelector("#nombre_user_ampl").innerHTML = "Nombre: " + datos_usuario.usu_nombre;
-     document.querySelector("#apellido_user_ampl").innerHTML = "Apellidos: " + datos_usuario.usu_apellido;
-     document.querySelector("#password_user_ampl").innerHTML = "Tu contraseña: ************";
-     document.querySelector("#nif_user_ampl").innerHTML = "Documento de identificación: " + datos_usuario.usu_documento_identificacion;
-     document.querySelector("#telefono_user_ampl").innerHTML = "Telefono: " + datos_usuario.usu_telefono;
-     document.querySelector("#nacimiento_user_ampl").innerHTML = "Fecha de nacimiento: " + datos_usuario.usu_fnac;
+    //GENERAR LOS DATOS PRINCIPALES DEL USUARIO
+
+    document.querySelector("#alias_user_ampl").innerHTML = "Tu nombre de usuario: " + datos_usuario.usu_alias;
+    document.querySelector("#nombre_user_ampl").innerHTML = "Nombre: " + datos_usuario.usu_nombre;
+    document.querySelector("#apellido_user_ampl").innerHTML = "Apellidos: " + datos_usuario.usu_apellido;
+    document.querySelector("#password_user_ampl").innerHTML = "Tu contraseña: ************";
+    document.querySelector("#nif_user_ampl").innerHTML = "Documento de identificación: " + datos_usuario.usu_documento_identificacion;
+    document.querySelector("#telefono_user_ampl").innerHTML = "Telefono: " + datos_usuario.usu_telefono;
+    document.querySelector("#nacimiento_user_ampl").innerHTML = "Fecha de nacimiento: " + datos_usuario.usu_fnac;
 
 }
+

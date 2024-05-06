@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,10 @@
     <link rel="icon" type="image/x-icon" href="assets/imagenes/favicon.ico">
     <link rel="stylesheet" href="assets/styles/styles.css">
     <link rel="stylesheet" href="assets/styles/modal.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <title>Tuimak</title>
 </head>
 
@@ -24,12 +29,13 @@
     <header>
         <div id="div_logo" onclick="fMostrarModal('#modal_home')"><img src="assets/imagenes/Logo.PNG" alt=""></div>
         <div id="div_login" onclick="fMostrarModal('#modal_login')"><img src="assets/imagenes/usuario.png" alt=""></div>
-        <div id="div_menu" onclick="fMostrarModal('#modal_menu_mobile')"><img src="assets/imagenes/menu.png" alt=""></div>
+        <div id="div_menu" onclick="fMostrarModal('#modal_menu_mobile')"><img src="assets/imagenes/menu.png" alt="">
+        </div>
         <div id="div_perfil_usuario" onclick="fMostrarPerfilUsuario()"> Mi perfil </div>
     </header>
     <nav>
-        <div onclick="fMostrarPrepararViaje()">Prepara tu viaje</div> 
-        <div onclick="fMostrarModal('#modal_info_hoteles')">Hoteles</div>
+        <div onclick="fMostrarPrepararViaje()">Prepara tu viaje</div>
+        <div onclick="fMostrarHoteles()">Hoteles</div>
         <div onclick="fMostrarActividades()">Actividades</div>
     </nav>
     <section>
@@ -57,7 +63,10 @@
         </div>
         <!-- MODAL SELECCIONA ACTIVIDADES -->
         <div id="modal_seleccionar_actividades" class="modal">
-            
+        </div>
+
+        <!-- MODAL INFO HOTELES -->
+        <div id="modal_info_hoteles">
         </div>
         <!-- MODAL HOME  -->
         <div id="modal_home">
@@ -65,20 +74,25 @@
             </div>
             <div class="bloques_home">
                 <div id="titulo_cta_b1">What is Lorem Ipsum?</div>
-                <div id="descripcion_cta_b1">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                <div id="descripcion_cta_b1">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                </div>
                 <div id="div_boton_b1">
-                 <div id="boton_cta_home_b1" onclick="fMostrarModal('#modal_preparar_viaje')">Crea tu viaje</div>
+                    <div id="boton_cta_home_b1" onclick="fMostrarModal('#modal_preparar_viaje')">Crea tu viaje</div>
                 </div>
             </div>
             <div class="bloques_home">
                 <div id="titulo_cta_b2">What is Lorem Ipsum? Lorem Ipsum is simply dummy. </div>
-                <div id="descripcion_cta_b2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</div>
+                <div id="descripcion_cta_b2">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                    unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived
+                    not only five centuries.</div>
             </div>
             <div class="bloques_home">
                 <div id="titulo_cta_b3">What is Lorem Ipsum?</div>
-                <div id="descripcion_cta_b3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                <div id="descripcion_cta_b3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                </div>
                 <div id="div_boton_b3">
-                 <div id="boton_cta_home_b3" onclick="fMostrarModal('#modal_registro')">Regístrate</div>
+                    <div id="boton_cta_home_b3" onclick="fMostrarModal('#modal_registro')">Regístrate</div>
                 </div>
             </div>
         </div>
@@ -88,130 +102,132 @@
                 <div id="titulo_login">Accede a tu cuenta</div>
                 <div class="login_datos">Username</div>
                 <div class="cajon_input">
-                   <input type="text" name="" id="alias_login"> 
+                    <input type="text" name="" id="alias_login">
                 </div>
                 <div class="login_datos">Contraseña</div>
                 <div class="cajon_input">
-                    <input type="text" name="" id="password_login"> 
-                 </div>
+                    <input type="text" name="" id="password_login">
+                </div>
                 <div class="div_boton_login">
                     <div id="boton_login" onclick="fLogin()">Acceder</div>
-                   </div>
+                </div>
                 <div id="div_error_login"></div>
             </div>
             <div id="login_registro">
                 <div id="titulo_cta_login">What is Lorem Ipsum?</div>
-                <div id="descripcion_cta_login">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                <div id="descripcion_cta_login">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.</div>
                 <div class="div_boton_login">
-                 <div id="boton_cta_login" onclick="fMostrarModal('#modal_registro')">Regístrate</div>
+                    <div id="boton_cta_login" onclick="fMostrarModal('#modal_registro')">Regístrate</div>
                 </div>
             </div>
         </div>
         <!-- MODAL REGISTRO  -->
         <div id="modal_registro">
             <div id="titulo_registro">Regístrate</div>
-                <div class="registro_datos">Nombre</div>
-                <div class="cajon_input">
-                   <input type="text" name="" id="nombre_registro"> 
-                </div>
-                <div class="registro_datos">Apellidos</div>
-                <div class="cajon_input">
-                    <input type="text" name="" id="apellidos_registro"> 
-                 </div>
-                 <div class="registro_datos">Username</div>
-                 <div class="cajon_input">
-                     <input type="text" name="" id="alias_registro"> 
-                  </div>
-                  <div class="registro_datos">Contraseña</div>
-                  <div class="cajon_input">
-                      <input type="text" name="" id="password_registro"> 
-                   </div>
-                   <div class="registro_datos">Introduce de nuevo la contraseña</div>
-                   <div class="cajon_input">
-                       <input type="text" name="" id="password_registro_r"> 
-                    </div>
-                    <div class="registro_datos">Documento de identificación</div>
-                    <div class="cajon_input">
-                        <input type="text" name="" id="nif_registro"> 
-                     </div>
-                     <div class="registro_datos">Teléfono</div>
-                    <div class="cajon_input">
-                        <input type="text" name="" id="telefono_registro"> 
-                     </div>
-                     <div class="registro_datos">Fecha de nacimiento</div>
-                    <div class="cajon_input">
-                        <input type="date" name="" id="fnac_registro"> 
-                     </div>                                           
-                <div class="div_boton_login">
-                    <div id="boton_registro" onclick="fRegistrar()">Crear Cuenta</div>
-                   </div>
-                <div id="div_error_registro"></div>
+            <div class="registro_datos">Nombre</div>
+            <div class="cajon_input">
+                <input type="text" name="" id="nombre_registro">
+            </div>
+            <div class="registro_datos">Apellidos</div>
+            <div class="cajon_input">
+                <input type="text" name="" id="apellidos_registro">
+            </div>
+            <div class="registro_datos">Username</div>
+            <div class="cajon_input">
+                <input type="text" name="" id="alias_registro">
+            </div>
+            <div class="registro_datos">Contraseña</div>
+            <div class="cajon_input">
+                <input type="text" name="" id="password_registro">
+            </div>
+            <div class="registro_datos">Introduce de nuevo la contraseña</div>
+            <div class="cajon_input">
+                <input type="text" name="" id="password_registro_r">
+            </div>
+            <div class="registro_datos">Documento de identificación</div>
+            <div class="cajon_input">
+                <input type="text" name="" id="nif_registro">
+            </div>
+            <div class="registro_datos">Teléfono</div>
+            <div class="cajon_input">
+                <input type="text" name="" id="telefono_registro">
+            </div>
+            <div class="registro_datos">Fecha de nacimiento</div>
+            <div class="cajon_input">
+                <input type="date" name="" id="fnac_registro">
+            </div>
+            <div class="div_boton_login">
+                <div id="boton_registro" onclick="fRegistrar()">Crear Cuenta</div>
+            </div>
+            <div id="div_error_registro"></div>
         </div>
-         <!-- MODAL MENU MOBILE  -->
-       <div id="modal_menu_mobile">
-        <div class="opciones_menu" onclick="fMostrarModal('#modal_preparar_viaje')">Prepara tu viaje</div>
-        <div class="opciones_menu" onclick="fMostrarModal('#modal_info_hoteles')">Hoteles</div>
-        <div class="opciones_menu" onclick="fMostrarModal('#modal_info_actividades')">Actividades</div>
-       </div>
-       <div id="modal_preparar_viaje">
+        <!-- MODAL MENU MOBILE  -->
+        <div id="modal_menu_mobile">
+            <div class="opciones_menu" onclick="fMostrarModal('#modal_preparar_viaje')">Prepara tu viaje</div>
+            <div class="opciones_menu" onclick="fMostrarModal('#modal_info_hoteles')">Hoteles</div>
+            <div class="opciones_menu" onclick="fMostrarModal('#modal_info_actividades')">Actividades</div>
+        </div>
+        <div id="modal_preparar_viaje">
             <div id="pv_ciudades">
-                
-            </div>
-       </div>
-               <!-- MODAL TRANSPORTES  -->
-               <div id="modal_seleccionar_transporte">
-                <div id="selector_ciudades">
-                    <div id="ciudad_origen">
-                        <label for="select_co">Elige una ciudad de origen</label>
-                        <select name="select_co" id="select_co">
-                        </select> 
-                    </div>
-                    <div id="ciudad_destino">
-                        <label for="select_cd">Elige una ciudad de destino</label>
-                        <select name="select_cd" id="select_cd">
-                        </select> 
-                    </div>
-                </div>
-                <div id="selector_fechas">
-                    <label for="ida">Selecciona la fecha de ida:</label>
-                    <input type="date" id="fecha_ida" name="fecha-ida" value="" min="" max=""/>
-    
-                    <label for="vuelta">Selecciona la fecha de vuelta:</label>
-                    <input type="date" id="fecha_vuelta" name="fecha-vuelta" value="" min="" max=""/>
-                </div>
-                <div id="contenedor_boton_buscar_transporte">
-                    <input type="button" value="Buscar transportes" onclick="fMostrarTransportes()">
-                </div>
-            </div>
-            <div id="modal_transportes_encontrados">
-            </div>
-            <div id="modal_perfil_usuario">
-                <div id="div_informacion">
-                    <div id="titulo_perfil_usuario">Mi perfil</div>
-                    <div id="alias_user"></div>
-                    <div id="nombre_user"></div>
-                    <div id="password_user"></div>
-                </div>
-                <div id="ver_reservas">Mis reservas</div>
-                <div id="ampliar_datos_user" onclick="fMostrarPerfilUsuarioAmpliado()"> Mis datos </div>
-                
-            </div>
-            <div id="modal_perfil_usuario_ampliado">
-                <div id="titulo_perfil_usuario">Mi perfil</div>
-                <div id="alias_user_ampl"></div>
-                <div id="nombre_user_ampl"></div>
-                <div id="apellido_user_ampl"></div>
-                <div id="password_user_ampl"></div>
-                <div id="nif_user_ampl"></div>
-                <div id="telefono_user_ampl"></div>
-                <div id="nacimiento_user_ampl"></div>
 
-                <div id="mpua_opciones">
-                    <div onclick="fModificarDatos()"> Modificar datos </div>
-                    <div onclick="fEliminarCuenta()"> Eliminar cuenta </div>
+            </div>
+        </div>
+        <!-- MODAL TRANSPORTES  -->
+        <div id="modal_seleccionar_transporte">
+            <div id="selector_ciudades">
+                <div id="ciudad_origen">
+                    <label for="select_co">Elige una ciudad de origen</label>
+                    <select name="select_co" id="select_co">
+                    </select>
+                </div>
+                <div id="ciudad_destino">
+                    <label for="select_cd">Elige una ciudad de destino</label>
+                    <select name="select_cd" id="select_cd">
+                    </select>
                 </div>
             </div>
+            <div id="selector_fechas">
+                <label for="ida">Selecciona la fecha de ida:</label>
+                <input type="date" id="fecha_ida" name="fecha-ida" value="" min="" max="" />
+
+                <label for="vuelta">Selecciona la fecha de vuelta:</label>
+                <input type="date" id="fecha_vuelta" name="fecha-vuelta" value="" min="" max="" />
+            </div>
+            <div id="contenedor_boton_buscar_transporte">
+                <input type="button" value="Buscar transportes" onclick="fMostrarTransportes()">
+            </div>
+        </div>
+        <div id="modal_transportes_encontrados">
+        </div>
+        <div id="modal_perfil_usuario">
+            <div id="div_informacion">
+                <div id="titulo_perfil_usuario">Mi perfil</div>
+                <div id="alias_user"></div>
+                <div id="nombre_user"></div>
+                <div id="password_user"></div>
+            </div>
+            <div id="ver_reservas">Mis reservas</div>
+            <div id="ampliar_datos_user" onclick="fMostrarPerfilUsuarioAmpliado()"> Mis datos </div>
+
+        </div>
+        <div id="modal_perfil_usuario_ampliado">
+            <div id="titulo_perfil_usuario">Mi perfil</div>
+            <div id="alias_user_ampl"></div>
+            <div id="nombre_user_ampl"></div>
+            <div id="apellido_user_ampl"></div>
+            <div id="password_user_ampl"></div>
+            <div id="nif_user_ampl"></div>
+            <div id="telefono_user_ampl"></div>
+            <div id="nacimiento_user_ampl"></div>
+
+            <div id="mpua_opciones">
+                <div onclick="fModificarDatos()"> Modificar datos </div>
+                <div onclick="fEliminarCuenta()"> Eliminar cuenta </div>
+            </div>
+        </div>
     </section>
     <footer>&copy TUIMAK 2024 </footer>
 </body>
+
 </html>
