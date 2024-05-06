@@ -70,11 +70,23 @@ header{
 
 }
 
+#div_perfil_usuario {
+    display: none;
+}
+
 #modal_perfil_usuario {
     display: none;
 }
 
-#modal_perfil_usuario_ampliado{
+#modal_perfil_usuario_ampliado {
+    display: none;
+}
+
+#div_perfil_usuario_ampliado{
+    display: none;
+}
+
+#modal_modificar_datos {
     display: none;
 }
 /* NAV */
@@ -582,6 +594,16 @@ section{
     margin: 10px;
 }
 
+#modal_modificar_datos{
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    margin: 10px;
+}
+
 #titulo_cta_login{
     display: flex;
     flex-wrap: wrap;
@@ -773,7 +795,15 @@ section{
 #modal_transportes_encontrados > div {
     margin: 5px;
 }
-
+/* MODAL PERFIL USUARIO */
+#modal_perfil_usuario {
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}
 
 /* FOOTER */
 
