@@ -593,26 +593,26 @@ function fMostrarPerfilUsuario() {
 
     //GENERAR LOS DATOS PRINCIPALES DEL USUARIO
 
-    document.querySelector("#alias_user").innerHTML = "Tu nombre de usuario: " + datos_usuario.usu_alias;
-    document.querySelector("#nombre_user").innerHTML = "Nombre completo: " + datos_usuario.usu_nombre + " " + datos_usuario.usu_apellido;
-    document.querySelector("#password_user").innerHTML = "Tu contraseña: ************";
+    document.querySelector("#alias_user_data").innerHTML = datos_usuario.usu_alias;
+    document.querySelector("#nombre_user_data").innerHTML = datos_usuario.usu_nombre + " " + datos_usuario.usu_apellido;
+    document.querySelector("#password_user_data").innerHTML = "************";
 }
 
 function fMostrarPerfilUsuarioAmpliado() {
 
     //MOSTRAR EL MODAL NECESARIO
-
+    document.querySelector("#modal_perfil_usuario_ampliado").style.display = "flex";
     fMostrarModal("#modal_perfil_usuario_ampliado");
 
     //GENERAR LOS DATOS PRINCIPALES DEL USUARIO
 
-    document.querySelector("#alias_user_ampl").innerHTML = "Tu nombre de usuario: " + datos_usuario.usu_alias;
-    document.querySelector("#nombre_user_ampl").innerHTML = "Nombre: " + datos_usuario.usu_nombre;
-    document.querySelector("#apellido_user_ampl").innerHTML = "Apellidos: " + datos_usuario.usu_apellido;
-    document.querySelector("#password_user_ampl").innerHTML = "Tu contraseña: ************";
-    document.querySelector("#nif_user_ampl").innerHTML = "Documento de identificación: " + datos_usuario.usu_documento_identificacion;
-    document.querySelector("#telefono_user_ampl").innerHTML = "Telefono: " + datos_usuario.usu_telefono;
-    document.querySelector("#nacimiento_user_ampl").innerHTML = "Fecha de nacimiento: " + datos_usuario.usu_fnac;
+    document.querySelector("#alias_user_ampl").innerHTML = datos_usuario.usu_alias;
+    document.querySelector("#nombre_user_ampl").innerHTML =  datos_usuario.usu_nombre;
+    document.querySelector("#apellido_user_ampl").innerHTML = datos_usuario.usu_apellido;
+    document.querySelector("#password_user_ampl").innerHTML = "************";
+    document.querySelector("#nif_user_ampl").innerHTML =  + datos_usuario.usu_documento_identificacion;
+    document.querySelector("#telefono_user_ampl").innerHTML = datos_usuario.usu_telefono;
+    document.querySelector("#nacimiento_user_ampl").innerHTML = datos_usuario.usu_fnac;
 
 }
 
