@@ -14,7 +14,7 @@ Bienvenido al readme de nuestro proyecto! <img src="https://raw.githubuserconten
 
 ## Autores
 
-- [@DvdPires19](https://github.com/DvdPires19)
+- [@Batistaker47](https://github.com/Batistaker47)
 - [@PePoPiPu](https://github.com/PePoPiPu)
 - [@luciludrei2898](https://github.com/luciludrei2898)
 - [@gontugithub](https://github.com/gontugithub)
