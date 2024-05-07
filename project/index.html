@@ -203,31 +203,37 @@
         <div id="modal_perfil_usuario">
             <div id="div_informacion">
                 <div id="titulo_perfil_usuario">Mi perfil</div>
-                <div id="alias_user"></div>
-                <div id="nombre_user"></div>
-                <div id="password_user"></div>
-                <div>
-                    <div id="ver_reservas">Mis reservas</div>
-                    <div id="ampliar_datos_user" onclick="fMostrarPerfilUsuarioAmpliado()"> Mis datos </div>
-                </div>
+                <div class="user_txt">Tu nombre de usuario </div>
+                <div id="alias_user_data"></div>
+                <div class="user_txt">Nombre completo</div>
+                <div id="nombre_user_data"></div>
+                <div class="user_txt">Tu contraseña</div>
+                <div id="password_user_data"></div>
+                <div id="ver_reservas">Mis reservas</div>
+                <div id="ampliar_datos_user" onclick="fMostrarPerfilUsuarioAmpliado()"> Mis datos </div>
                 
             </div>
-
         </div>
-        <div id="modal_perfil_usuario_ampliado">
-            <div id="titulo_perfil_usuario">Mi perfil</div>
-            <div id="alias_user_ampl"></div>
-            <div id="nombre_user_ampl"></div>
-            <div id="apellido_user_ampl"></div>
-            <div id="password_user_ampl"></div>
-            <div id="nif_user_ampl"></div>
-            <div id="telefono_user_ampl"></div>
-            <div id="nacimiento_user_ampl"></div>
 
-            <div id="mpua_opciones">
-                <div onclick="fMostrarModal('#modal_modificar_datos')"> Modificar datos </div>
-                <div onclick="fEliminarCuenta()"> Eliminar cuenta </div>
-            </div>
+        <div id="modal_perfil_usuario_ampliado">
+            <div id="div_informacion_ampl">
+                <div id="titulo_perfil_usuario">Mi perfil</div>
+                <div class="user_txt">Tu nombre de usuario: </div>
+                <div id="alias_user_ampl"></div>
+                <div class="user_txt">Nombre completo:</div>
+                <div id="nombre_user_ampl"></div>
+                <div id="apellido_user_ampl"></div>
+                <div class="user_txt">Tu contraseña:</div>
+                <div id="password_user_ampl"></div>
+                <div class="user_txt">Documento de identificación:</div>
+                <div id="nif_user_ampl"></div>
+                <div class="user_txt">Teléfono:</div>
+                <div id="telefono_user_ampl"></div>
+                <div class="user_txt">Fecha de nacimiento:</div>
+                <div id="nacimiento_user_ampl"></div>
+                <div onclick="fMostrarModal('#modal_modificar_datos')" id="div_modificar_user"> Modificar datos </div>
+                <div onclick="fEliminarCuenta()" id="div_borrar_user"> Eliminar cuenta </div>
+            </div>   
         </div>
 
         <div id="modal_modificar_datos">
